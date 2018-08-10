@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+
+    <title>请上传图片试试</title>
+    <style>
+        .bd-navbar {
+            min-height: 4rem;
+            background-color: #563d7c;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
+        }
+
+        .bd-navbar h3 {
+            color: #fff;
+        }
+
+        .main-box {
+            width: 60%;
+            margin-top: 100px;
+        }
+
+        .form-group {
+            margin-top: 50px;
+            padding: 40px;
+            border: 1px dashed #dedede;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+        <h3>Ui Automation Demo</h3>
+    </header>
+
+    <div class="container">
+        <form id="main-box" class="main-box">
+            <h3>请点击上传图片 或者 黏贴图片url</h3>
+            <div class="form-group">
+                <input type="file" name="file" id="postfile" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="img-url" type="text" placeholder="粘贴图片url">
+            </div>
+            <button type="button" id="startbtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                点击开始识别
+            </button>
+        </form>
+        <!-- Content here -->
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            /**
+             *  洪玄给的
+             **/
+            var transform = (function () {
+
+                function upperCaseInitial(str) {
+                    return str.slice(0, 1).toUpperCase() + str.slice(1);
+                }
+
+                function camelCase2kebabCase(name) {
+                    if (name && typeof name == 'string') {
+                        if (name.toUpperCase() === name) {
+                            return name.toLowerCase().replace('_', '-')
+                        } else {
+                            const arr = []
+                            for (var i = 0; i < name.length; i++) {
+                                const char = name.charAt(i)
+                                if (char.toUpperCase() === char && char !== "-") {
+                                    arr.push('-')
+                                } else {
+                                }
+                                arr.push(char.toLowerCase())
+                            }
+                            return arr.join('')
+                        }
+                    }
+                    return name
+                }
+                function changeWeexJSON(cstyle, pstyle) {
+                    for (var key in cstyle) {
+                        var newkey = camelCase2kebabCase(key);
+                        pstyle[newkey] = cstyle[key];
+
+                    }
+                }
+
+
+                function weexTransformData(layoutData, customClassName) {
+                    var customClassName = "r" + parseInt(Math.random() * 10030);
+                    var gindex = 1;
+                    var transformData = function (layerInfo, pId, index) {
+                        gindex = gindex + 1;
+                        layerInfo['clazz'] = layerInfo.clazz.name;
+                        layerInfo['id'] = layerInfo.id;
+                        if (layerInfo.layout) {
+                            layerInfo.weexStyle = layerInfo.weexStyle || {};
+                            var cssStyles = layerInfo.weexStyle;
+                            changeWeexJSON(layerInfo.layout, cssStyles);
+                            changeWeexJSON(layerInfo.styles, cssStyles);
+                            changeWeexJSON(layerInfo.imageStyles, cssStyles);
+                            changeWeexJSON(layerInfo.textStyles, cssStyles);
+                            /*
+                                var doPxArr = ["width","height","top","left","right","bottom","border-width","border-radius","font-size","line-height","letter-spacing","border-bottom-left-radius","border-bottom-right-radius","border-top-left-radius","border-top-right-radius","max-width","max-height"];
+                            */
+                            var doPxArr = ["width", "height", "top", "left", "right", "bottom", "border-width", "border-radius", "font-size", "line-height", "letter-spacing", "border-bottom-left-radius", "border-bottom-right-radius", "border-top-left-radius", "border-top-right-radius"];
+                            for (var i = 0; i < doPxArr.length; i++) {
+                                var key = doPxArr[i]
+                                if (cssStyles[key]) {
+                                    cssStyles[key] = cssStyles[key] + "px";
+                                }
+                            }
+                            var pmArr = ["margin", "padding"];
+                            for (var i = 0; i < pmArr.length; i++) {
+                                var key = pmArr[i]
+                                if (cssStyles[key]) {
+                                    var value = cssStyles[key];
+                                    if (value[0]) {
+                                        var ikey = key + '-top';
+                                        cssStyles[ikey] = value[0] + "px";
+                                    }
+                                    if (value[1]) {
+                                        var ikey = key + '-right';
+                                        cssStyles[ikey] = value[1] + "px";
+                                    }
+                                    if (value[2]) {
+                                        var ikey = key + '-bottom'
+
+                                        cssStyles[ikey] = value[2] + "px";
+                                    }
+                                    if (value[3]) {
+                                        var ikey = key + '-left'
+                                        cssStyles[ikey] = value[3] + "px";
+                                    }
+                                }
+                                delete cssStyles[key];
+                            }
+                            if (cssStyles["direction"]) {
+                                cssStyles["flex-direction"] = cssStyles["direction"]
+                                delete cssStyles["direction"];
+                            }
+                            if (!cssStyles["display"] && (cssStyles["flex-direction"])) {
+                                cssStyles["display"] = "flex";
+                            }
+                            if (layerInfo.children) {
+                                var len = layerInfo.children.length;
+                                for (var i = 0; i < len; i++) {
+                                    transformData(layerInfo.children[i], layerInfo.id, i);
+                                }
+                            }
+                        }
+                    }
+                    transformData(layoutData);
+                    return layoutData;
+                }
+                return {
+                    weexTransformData
+                }
+
+
+            })()
+
+            /**
+             *  请求方法
+             **/
+            function postData(url, type, data) {
+
+                let _type = type || 'POST'
+
+                return $.ajax({
+                    url: url,
+                    method: type,
+                    data: data,
+                    dataType: "json"
+                })
+
+            }
+
+
+
+            const aiServerUrl = 'http://101.132.165.68:8888/aiui?img={{imgUrl}}&txt=http://lubanpsdupload.oss-cn-shanghai.aliyuncs.com/hongxuan-sketch/hongxuan-sketch-modulex1531719628951.json'
+            const dslServerUrl = "http://pre-idlehive.taobao.com/ui2code/dsl"
+            const vueServerUrl = "http://idlehive.taobao.com/sketchPage/vuePostAiAjax"
+
+            /**
+             * 根据图片 url 发送请求，请求完成后打开 体验页面
+             **/
+            function postImgUrl(imgUrl) {
+
+                let _aiServerUrl = aiServerUrl.replace('{{imgUrl}}', imgUrl);
+
+                postData(_aiServerUrl, 'GET', {}).done(function (date) {
+
+                    return postData(dslServerUrl, 'POST', { "moban": JSON.stringify(date) });
+
+                }).done(function (data) {
+
+/*
+                    var rdata = data.data.data;
+*/
+                    var data_layout = transform.weexTransformData(data);
+
+                    return postData(vueServerUrl, 'POST', { "moban": JSON.stringify(data_layout), "type": "module" })
+
+                }).done(function (jsonData) {
+
+                    var lasturl =
+                        "http://market.m.taobao.com/app/idleFish-F2e/sketch-page/generator-page/index.html?webUrlPreview=" +
+                        jsonData.data.webUrlPreview +
+                        "&nativeUrlPreview=" +
+                        escape(jsonData.data.nativeUrlPreview) +
+                        "&vuePath=" +
+                        jsonData.data.vuePath;
+
+                    window.open(lasturl);
+
+                    $('#startbtn').removeClass('btn-light');
+
+                })
+
+            }
+
+
+            /**
+             *  ui 绑定
+             **/
+
+            $('#startbtn').click(function () {
+
+                // console.log(123);
+
+                if ($('#startbtn').hasClass('btn-light')) {
+                    return;
+                }
+
+                let nowUrl = $('#img-url').val();
+
+                if (!nowUrl) {
+                    alert('请黏贴图片url');
+                }
+
+                postImgUrl(nowUrl);
+
+                $('#startbtn').text(' 识别中 请耐心等待 ... ').addClass('btn-light');
+
+            })
+
+
+            var uploading = false;
+
+            $("#postfile").on("change", function () {
+
+                if (uploading) {
+                    alert("文件正在上传中，请稍候");
+                    return false;
+                }
+
+                $('#startbtn').text('识别中 请耐心等待 ... ').addClass('btn-light');
+
+                $.ajax({
+                    url: "http://101.132.165.68:8888/upload",
+                    type: 'POST',
+                    cache: false,
+                    data: new FormData($('#main-box')[0]),
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    beforeSend: function () {
+                        uploading = true;
+                    },
+                    success: function (data) {
+                        postImgUrl(data.imgurl);
+                    }
+                });
+            });
+
+
+        });
+
+
+
+    </script>
+
+
+</body>
+
+</html>
