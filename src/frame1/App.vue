@@ -1,431 +1,1001 @@
+
 <template>
   <div>
-    <div id="g44" class="white-column-flex-start-w750-g44">
-      <div id="g24" class="row-space-between-w750-g24">
-        <div id="t22" class="black-size34-left-t22">租赁更时111尚11</div>
-        <div id="t23" class="gray-size24-right-t23"> 张**嘉5分钟前租了相机</div>
-      </div>ˆ
-      <div id="g42" class="row-center-w750-g42">
-        <div id="g34" class="white-row-flex-start-g34">
-          <div id="a45" class="column-center-background-a45">
-            <div id="s11" class="white-s11"></div>
+    <div class="white-column-flex-start-w750-g119">
+      <statusbar></statusbar>
+      <navbar title="应用"></navbar>
+
+
+      <bar @currentbarindex="changeBar" :menu="menu"></bar>
+
+
+      <div v-if="currentBar==1">
+        <div @click="goAppDtail" id="g74" class="white-row-space-between-w750-g74">
+          <div id="g120" class="row-flex-start-left-g120">
+            <img id="i17" class="w80-h80-left-i17" src='https://gw.alicdn.com/tfs/TB1KskAGL1TBuNjy0FjXXajyXXa-80-80.png' />
+            <div id="g70" class="column-flex-start-right-g70"> <div id="t14" class="black-size26-t14">嘟嘟影视</div> <div id="t15" class="dkgray-size22-t15">9.1M</div> <div id="t16" class="dkgray-size22-t16">免费观看VIP影视大片</div> </div>
           </div>
-          <div id="g33" class="column-flex-start-g33">
-            <div id="g27" class="row-flex-start-g27">
-              <img id="i15" class="w48-h48-i15" src='https://gw.alicdn.com/tfs/TB1iW21FTtYBeNjy1XdXXXXyVXa-48-48.png' />
-              <div id="t12" class="yellow-size30-t12">闲鱼租房</div>
-              <div id="g26" class="row-center-w96-h28-g26">
-                <img id="i13" class="w96-h28-background-i13" src='https://gw.alicdn.com/tfs/TB1pC4IFHSYBuNjSspiXXXNzpXa-96-28.png' />
-                <div id="t14" class="white-size22-t14">免中介费</div>
-              </div>
-            </div>
-            <div id="t16" class="gray-size24-t16">真实房东 超多房源</div>
-            <div id="g32" class="row-flex-start-g32">
-              <div id="g30" class="column-flex-start-w128-h128-left-g30">
-                <img id="i17" class="w128-h128-background-i17" src='https://gw.alicdn.com/tfs/TB1Zm4IFHSYBuNjSspiXXXNzpXa-128-128.png' />
-                <div id="g29" class="row-center-w74-h32-g29">
-                  <img id="i18" class="w74-h32-background-i18" src='https://gw.alicdn.com/tfs/TB1PrtqFKuSBuNjy1XcXXcYjFXa-74-32.png' />
-                  <div id="t19" class="white-size20-t19">0.5Km</div>
-                </div>
-              </div>
-              <div id="g31" class="column-flex-start-w128-h128-right-g31">
-                <img id="i20" class="w128-h128-background-i20" src='https://gw.alicdn.com/tfs/TB1W7JPFNSYBuNjSspjXXX73VXa-128-128.png' />
-                <img id="i21" class="w128-h128-i21" src='https://gw.alicdn.com/tfs/TB1cYxqFKuSBuNjy1XcXXcYjFXa-128-128.png' /> </div>
-            </div>
-          </div>
+          <div id="g121" class="row-flex-start-right-g121"> <div id="t12" class="black-size24-left-t12">注册  ＋20000</div>
+            <img id="i13" class="w32-h32-right-i13" src='https://gw.alicdn.com/tfs/TB11myDGL9TBuNjy0FcXXbeiFXa-32-32.png' /> </div>
         </div>
-        <div id="g37" class="white-column-center-g37">
-          <div id="t8" class="black-size30-t8">租衣服</div>
-          <div id="t9" class="gray-size24-t9">信用免押金</div>
-          <img id="i7" class="w126-h122-i7" src='https://gw.alicdn.com/tfs/TB1PWY1FTtYBeNjy1XdXXXXyVXa-126-122.png' /> </div>
-        <div id="g40" class="white-column-center-g40">
-          <div id="t4" class="black-size30-t4">租数码</div>
-          <div id="t5" class="gray-size24-t5">最低20元/天</div>
-          <img id="i3" class="w124-h126-i3" src='https://gw.alicdn.com/tfs/TB1R90IFHSYBuNjSspiXXXNzpXa-124-126.png' /> </div>
       </div>
-      <img id="i1" class="w36-h12-i1" src='https://gw.alicdn.com/tfs/TB1kqY1FTtYBeNjy1XdXXXXyVXa-36-12.png' /> </div>
+      <div v-if="currentBar==2">
+        <div   class="white-row-space-between-w750-g74">
+          <div id="g120" class="row-flex-start-left-g120">
+            <img id="i17" class="w80-h80-left-i17" src='https://gw.alicdn.com/tfs/TB1KskAGL1TBuNjy0FjXXajyXXa-80-80.png' />
+            <div id="g70" class="column-flex-start-right-g70"> <div id="t14" class="black-size26-t14">游戏</div> <div id="t15" class="dkgray-size22-t15">9.1M</div> <div id="t16" class="dkgray-size22-t16">免费观看VIP影视大片</div> </div>
+          </div>
+          <div id="g121" class="row-flex-start-right-g121"> <div id="t12" class="black-size24-left-t12">注册  ＋20000</div>
+            <img id="i13" class="w32-h32-right-i13" src='https://gw.alicdn.com/tfs/TB11myDGL9TBuNjy0FcXXbeiFXa-32-32.png' /> </div>
+        </div>
+
+
+      </div>
+      <div v-if="currentBar==3">
+
+        <div   class="white-row-space-between-w750-g74">
+          <div  class="row-flex-start-left-g120">
+            <img  class="w80-h80-left-i17" src='https://gw.alicdn.com/tfs/TB1KskAGL1TBuNjy0FjXXajyXXa-80-80.png' />
+            <div  class="column-flex-start-right-g70"> <div id="t14" class="black-size26-t14">活动奖励</div> <div id="t15" class="dkgray-size22-t15">9.1M</div> <div id="t16" class="dkgray-size22-t16">免费观看VIP影视大片</div> </div>
+          </div>
+          <div  class="row-flex-start-right-g121"> <div id="t12" class="black-size24-left-t12">＋20000</div>
+            <img  class="w32-h32-right-i13" src='https://gw.alicdn.com/tfs/TB11myDGL9TBuNjy0FcXXbeiFXa-32-32.png' /> </div>
+        </div>
+      </div>
+
+
+      <div id="s60" class="white-w750-h160-s60"></div>
+    </div>
   </div>
 </template>
 <style scoped>
-.white-column-flex-start-w750-g44 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  width: 750px;
-  background-color: rgba(255, 255, 255, 1);
-  display: flex;
-}
+  .white-column-flex-start-w750-g119 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    width: 750px;
+    background-color: rgba(240, 240, 240, 1);
+    display: flex;
+  }
 
-.row-space-between-w750-g24 {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  position: relative;
-  width: 750px;
-  align-self: center;
-  margin-top: 24px;
-  display: flex;
-}
+  .white-row-center-w750-g62 {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+  }
 
-.black-size34-left-t22 {
-  position: relative;
-  align-self: flex-end;
-  font-family: PingFangSC-Semibold;
-  font-size: 34px;
-  color: #222222;
-  line-height: 48px;
-  font-weight: normal;
-  margin-left: 32px;
-}
+  .w52-h50-absolute-i10 {
+    position: absolute;
+    width: 52px;
+    height: 50px;
+    left: 13px;
+    top: 25px;
+    
+  }
 
-.gray-size24-right-t23 {
-  position: relative;
-  align-self: flex-end;
-  font-family: PingFangSC-Regular;
-  font-size: 24px;
-  color: #888888;
-  line-height: 40px;
-  font-weight: normal;
-  margin-top: 8px;
-  margin-right: 32px;
-}
+  .black-size32-t9 {
+    position: relative;
+    align-self: center;
+    font-family: PingFangSC-Medium;
+    font-size: 32px;
+    color: #4A4A4A;
+    line-height: 45px;
+    font-weight: bold;
+    margin-top: 0.5px;
+  }
 
-.row-center-w750-g42 {
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  position: relative;
-  width: 750px;
-  align-self: center;
-  margin-top: 16px;
-  display: flex;
-}
+  .white-column-flex-start-w750-g68 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    margin-top: 1px;
+    display: flex;
+  }
 
-.white-row-flex-start-g34 {
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  align-self: flex-start;
-  background-color: rgba(245, 246, 247, 1);
-  border-radius: 12px;
-  display: flex;
-}
+  .row-flex-start-w750-up-g66 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    margin-top: 17px;
+    display: flex;
+  }
 
-.column-center-background-a45 {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  display: flex;
-}
+  .magenta-size26-t5 {
+    position: relative;
+    align-self: center;
+    font-family: PingFangSC-Semibold;
+    font-size: 26px;
+    color: #9013FE;
+    line-height: 37px;
+    font-weight: normal;
+    margin-left: 119px;
+  }
 
-.white-s11 {
-  position: relative;
-  background-color: rgba(245, 246, 247, 1);
-  border-radius: 12px;
-}
+  .w1-h47-i4 {
+    position: relative;
+    width: 1px;
+    height: 47px;
+    align-self: center;
+    
+    margin-left: 87px;
+  }
 
-.column-flex-start-g33 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: relative;
-  align-self: center;
-  margin-right: 35px;
-  margin-bottom: 0.5px;
-  margin-left: 17px;
-  display: flex;
-}
+  .black-size26-t7 {
+    position: relative;
+    align-self: center;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #444444;
+    line-height: 37px;
+    font-weight: normal;
+    margin-left: 88px;
+  }
 
-.row-flex-start-g27 {
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: relative;
-  align-self: flex-start;
-  margin-right: 17px;
-  display: flex;
-}
+  .w1-h47-i3 {
+    position: relative;
+    width: 1px;
+    height: 47px;
+    align-self: center;
+    
+    margin-left: 87px;
+  }
 
-.w48-h48-i15 {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  align-self: flex-start;
-  resize: stretch;
-}
+  .black-size26-t8 {
+    position: relative;
+    align-self: center;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #444444;
+    line-height: 37px;
+    font-weight: normal;
+    margin-left: 62px;
+  }
 
-.yellow-size30-t12 {
-  position: relative;
-  align-self: flex-start;
-  font-family: PingFangSC-Medium;
-  font-size: 30px;
-  color: #ff8c21;
-  line-height: 32px;
-  font-weight: bold;
-  margin-top: 4px;
-  margin-bottom: 12px;
-  margin-left: 2px;
-}
+  .magenta-w109-h2-down-s6 {
+    position: relative;
+    width: 109px;
+    height: 2px;
+    align-self: flex-start;
+    background-color: rgba(144, 19, 254, 1);
+    margin-top: 13px;
+    margin-bottom: 1px;
+    margin-left: 91px;
+  }
 
-.row-center-w96-h28-g26 {
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 96px;
-  height: 28px;
-  align-self: flex-start;
-  margin-top: 6px;
-  margin-bottom: 14px;
-  margin-left: 8px;
-  display: flex;
-}
+  .white-row-space-between-w750-g74 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-bottom-width: 1px;
+    padding-top: 25px;
+    padding-bottom: 25.5px;
+    display: flex;
+  }
 
-.w96-h28-background-i13 {
-  position: absolute;
-  width: 96px;
-  height: 28px;
-  left: 0;
-  top: 0;
-  resize: stretch;
-}
+  .row-flex-start-left-g120 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 0.5px;
+    margin-left: 30px;
+    display: flex;
+  }
 
-.white-size22-t14 {
-  position: relative;
-  align-self: center;
-  font-family: PingFangSC-Medium;
-  font-size: 22px;
-  color: #ffffff;
-  line-height: 20px;
-  font-weight: bold;
-}
+  .w80-h80-left-i17 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    
+    margin-top: 0.5px;
+  }
 
-.gray-size24-t16 {
-  position: relative;
-  align-self: flex-start;
-  font-family: PingFangSC-Regular;
-  font-size: 24px;
-  color: #888888;
-  line-height: 28px;
-  font-weight: normal;
-  margin-top: -4px;
-  margin-right: 85px;
-  margin-left: 6px;
-}
+  .column-flex-start-right-g70 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-left: 28px;
+    display: flex;
+  }
 
-.row-flex-start-g32 {
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: relative;
-  align-self: flex-end;
-  margin-top: 11px;
-  margin-left: 19px;
-  display: flex;
-}
+  .black-size26-t14 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #3A3A3A;
+    line-height: 37px;
+    font-weight: normal;
+    margin-right: 106px;
+  }
 
-.column-flex-start-w128-h128-left-g30 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: relative;
-  width: 128px;
-  height: 128px;
-  align-self: flex-start;
-  display: flex;
-}
+  .dkgray-size22-t15 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 163px;
+  }
 
-.w128-h128-background-i17 {
-  position: absolute;
-  width: 128px;
-  height: 128px;
-  left: 0;
-  top: 0;
-  resize: stretch;
-}
+  .dkgray-size22-t16 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 7px;
+  }
 
-.row-center-w74-h32-g29 {
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 74px;
-  height: 32px;
-  align-self: flex-start;
-  margin-top: 96px;
-  display: flex;
-}
+  .row-flex-start-right-g121 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-top: 0.5px;
+    margin-right: 32px;
+    display: flex;
+  }
 
-.w74-h32-background-i18 {
-  position: absolute;
-  width: 74px;
-  height: 32px;
-  left: 0;
-  top: 0;
-  resize: stretch;
-}
+  .black-size24-left-t12 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #3A3A3A;
+    line-height: 33px;
+    font-weight: normal;
+  }
 
-.white-size20-t19 {
-  position: relative;
-  align-self: center;
-  font-family: PingFangSC-Medium;
-  font-size: 20px;
-  color: #ffffff;
-  line-height: 20px;
-  font-weight: bold;
-}
+  .w32-h32-right-i13 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    
+    margin-bottom: 1px;
+    margin-left: 10px;
+  }
 
-.column-flex-start-w128-h128-right-g31 {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: relative;
-  width: 128px;
-  height: 128px;
-  align-self: flex-start;
-  margin-left: 16px;
-  display: flex;
-}
+  .white-row-space-between-w750-g81 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 1px;
+    padding-top: 25px;
+    padding-bottom: 25.5px;
+    display: flex;
+  }
 
-.w128-h128-background-i20 {
-  position: absolute;
-  width: 128px;
-  height: 128px;
-  left: 0;
-  top: 0;
-  resize: stretch;
-}
+  .row-flex-start-left-g122 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 0.5px;
+    margin-left: 30px;
+    display: flex;
+  }
 
-.w128-h128-i21 {
-  position: relative;
-  width: 128px;
-  height: 128px;
-  align-self: flex-start;
-  resize: stretch;
-}
+  .w80-h80-left-i24 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    
+    margin-top: 0.5px;
+  }
 
-.white-column-center-g37 {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  align-self: flex-start;
-  background-color: rgba(245, 246, 247, 1);
-  border-radius: 12px;
-  margin-left: 16px;
-  padding-top: 22px;
-  padding-right: 18px;
-  padding-bottom: 20px;
-  padding-left: 18.5px;
-  display: flex;
-}
+  .column-flex-start-right-g77 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-left: 28px;
+    display: flex;
+  }
 
-.black-size30-t8 {
-  position: relative;
-  align-self: center;
-  font-family: PingFangSC-Medium;
-  font-size: 30px;
-  color: #222222;
-  line-height: 32px;
-  font-weight: bold;
-  margin-left: 0.5px;
-}
+  .black-size26-t21 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #3A3A3A;
+    line-height: 37px;
+    font-weight: normal;
+    margin-right: 106px;
+  }
 
-.gray-size24-t9 {
-  position: relative;
-  align-self: center;
-  font-family: PingFangSC-Regular;
-  font-size: 24px;
-  color: #888888;
-  line-height: 28px;
-  font-weight: normal;
-  margin-top: 8px;
-  margin-right: 0.5px;
-}
+  .dkgray-size22-t22 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 163px;
+  }
 
-.w126-h122-i7 {
-  position: relative;
-  width: 126px;
-  height: 122px;
-  align-self: center;
-  resize: stretch;
-  margin-top: 16px;
-  margin-left: 0.5px;
-}
+  .dkgray-size22-t23 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 7px;
+  }
 
-.white-column-center-g40 {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  align-self: flex-start;
-  background-color: rgba(245, 246, 247, 1);
-  border-radius: 12px;
-  margin-left: 16px;
-  padding-top: 22px;
-  padding-right: 13.5px;
-  padding-bottom: 20px;
-  padding-left: 13px;
-  display: flex;
-}
+  .row-flex-start-right-g123 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-top: 0.5px;
+    margin-right: 32px;
+    display: flex;
+  }
 
-.black-size30-t4 {
-  position: relative;
-  align-self: center;
-  font-family: PingFangSC-Medium;
-  font-size: 30px;
-  color: #222222;
-  line-height: 32px;
-  font-weight: bold;
-}
+  .black-size24-left-t19 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #3A3A3A;
+    line-height: 33px;
+    font-weight: normal;
+  }
 
-.gray-size24-t5 {
-  position: relative;
-  align-self: center;
-  font-family: PingFangSC-Regular;
-  font-size: 24px;
-  color: #888888;
-  line-height: 28px;
-  font-weight: normal;
-  margin-top: 8px;
-  margin-right: 0.5px;
-}
+  .w32-h32-right-i20 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    
+    margin-bottom: 1px;
+    margin-left: 10px;
+  }
 
-.w124-h126-i3 {
-  position: relative;
-  width: 124px;
-  height: 126px;
-  align-self: center;
-  resize: stretch;
-  margin-top: 12px;
-  margin-right: 1px;
-}
+  .white-row-space-between-w750-g87 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 1px;
+    padding-top: 25px;
+    padding-bottom: 25.5px;
+    display: flex;
+  }
 
-.w36-h12-i1 {
-  position: relative;
-  width: 36px;
-  height: 12px;
-  align-self: center;
-  resize: stretch;
-  margin-top: 18px;
-  margin-bottom: 18px;
-}
+  .row-flex-start-left-g124 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 0.5px;
+    margin-left: 30px;
+    display: flex;
+  }
+
+  .w80-h80-left-i31 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    
+    margin-top: 0.5px;
+  }
+
+  .column-flex-start-right-g83 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-left: 28px;
+    display: flex;
+  }
+
+  .black-size26-t28 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #3A3A3A;
+    line-height: 37px;
+    font-weight: normal;
+    margin-right: 106px;
+  }
+
+  .dkgray-size22-t29 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 163px;
+  }
+
+  .dkgray-size22-t30 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 7px;
+  }
+
+  .row-flex-start-right-g125 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-top: 0.5px;
+    margin-right: 32px;
+    display: flex;
+  }
+
+  .black-size24-left-t26 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #3A3A3A;
+    line-height: 33px;
+    font-weight: normal;
+  }
+
+  .w32-h32-right-i27 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    
+    margin-bottom: 1px;
+    margin-left: 10px;
+  }
+
+  .white-row-space-between-w750-g93 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 1px;
+    padding-top: 25px;
+    padding-bottom: 25.5px;
+    display: flex;
+  }
+
+  .row-flex-start-left-g126 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 0.5px;
+    margin-left: 30px;
+    display: flex;
+  }
+
+  .w80-h80-left-i38 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    
+    margin-top: 0.5px;
+  }
+
+  .column-flex-start-right-g89 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-left: 28px;
+    display: flex;
+  }
+
+  .black-size26-t35 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #3A3A3A;
+    line-height: 37px;
+    font-weight: normal;
+    margin-right: 106px;
+  }
+
+  .dkgray-size22-t36 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 163px;
+  }
+
+  .dkgray-size22-t37 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 7px;
+  }
+
+  .row-flex-start-right-g127 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-top: 0.5px;
+    margin-right: 32px;
+    display: flex;
+  }
+
+  .black-size24-left-t33 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #3A3A3A;
+    line-height: 33px;
+    font-weight: normal;
+  }
+
+  .w32-h32-right-i34 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    
+    margin-bottom: 1px;
+    margin-left: 10px;
+  }
+
+  .white-row-space-between-w750-g99 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 1px;
+    padding-top: 25px;
+    padding-bottom: 25.5px;
+    display: flex;
+  }
+
+  .row-flex-start-left-g128 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 0.5px;
+    margin-left: 30px;
+    display: flex;
+  }
+
+  .w80-h80-left-i45 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    
+    margin-top: 0.5px;
+  }
+
+  .column-flex-start-right-g95 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-left: 28px;
+    display: flex;
+  }
+
+  .black-size26-t42 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #3A3A3A;
+    line-height: 37px;
+    font-weight: normal;
+    margin-right: 106px;
+  }
+
+  .dkgray-size22-t43 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 163px;
+  }
+
+  .dkgray-size22-t44 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 7px;
+  }
+
+  .row-flex-start-right-g129 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-top: 0.5px;
+    margin-right: 32px;
+    display: flex;
+  }
+
+  .black-size24-left-t40 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #3A3A3A;
+    line-height: 33px;
+    font-weight: normal;
+  }
+
+  .w32-h32-right-i41 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    
+    margin-bottom: 1px;
+    margin-left: 10px;
+  }
+
+  .white-row-space-between-w750-g105 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 1px;
+    padding-top: 25px;
+    padding-bottom: 25.5px;
+    display: flex;
+  }
+
+  .row-flex-start-left-g130 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 0.5px;
+    margin-left: 30px;
+    display: flex;
+  }
+
+  .w80-h80-left-i52 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    
+    margin-top: 0.5px;
+  }
+
+  .column-flex-start-right-g101 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-left: 28px;
+    display: flex;
+  }
+
+  .black-size26-t49 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #3A3A3A;
+    line-height: 37px;
+    font-weight: normal;
+    margin-right: 106px;
+  }
+
+  .dkgray-size22-t50 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 163px;
+  }
+
+  .dkgray-size22-t51 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 7px;
+  }
+
+  .row-flex-start-right-g131 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-top: 0.5px;
+    margin-right: 32px;
+    display: flex;
+  }
+
+  .black-size24-left-t47 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #3A3A3A;
+    line-height: 33px;
+    font-weight: normal;
+  }
+
+  .w32-h32-right-i48 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    
+    margin-bottom: 1px;
+    margin-left: 10px;
+  }
+
+  .white-row-space-between-w750-g111 {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 750px;
+    align-self: flex-start;
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(213, 213, 213, 1);
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 1px;
+    padding-top: 25px;
+    padding-bottom: 25.5px;
+    display: flex;
+  }
+
+  .row-flex-start-left-g132 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    align-self: center;
+    margin-bottom: 0.5px;
+    margin-left: 30px;
+    display: flex;
+  }
+
+  .w80-h80-left-i59 {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    
+    margin-top: 0.5px;
+  }
+
+  .column-flex-start-right-g107 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-left: 28px;
+    display: flex;
+  }
+
+  .black-size26-t56 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 26px;
+    color: #3A3A3A;
+    line-height: 37px;
+    font-weight: normal;
+    margin-right: 106px;
+  }
+
+  .dkgray-size22-t57 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 5px;
+    margin-right: 163px;
+  }
+
+  .dkgray-size22-t58 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 22px;
+    color: #B6B6B6;
+    line-height: 30px;
+    font-weight: normal;
+    margin-top: 7px;
+  }
+
+  .row-flex-start-right-g133 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    align-self: center;
+    margin-top: 0.5px;
+    margin-right: 32px;
+    display: flex;
+  }
+
+  .black-size24-left-t54 {
+    position: relative;
+    align-self: flex-start;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #3A3A3A;
+    line-height: 33px;
+    font-weight: normal;
+  }
+
+  .w32-h32-right-i55 {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    align-self: flex-start;
+    
+    margin-bottom: 1px;
+    margin-left: 10px;
+  }
+
+  .white-w750-h160-s60 {
+    position: relative;
+    width: 750px;
+    height: 160px;
+    background-color: transparent;
+  }
 </style>
-
 <script>
-export default {
-  data: function() {
-    return {};
-  },
-  components: {},
-  methods: {},
-  created: function() {}
-};
+  import statusbar from "../compents/statusbar.vue";
+  import navbar from "../compents/navbar.vue";
+  import bar from "../compents/bar.vue";
+  import util from "../lib/util.js";
+
+
+  export default {
+    data: function() {
+      return {
+        currentBar:1,
+        menu:["应用","游戏","活跃奖励"]
+      };
+    },
+    components: { statusbar, navbar,bar },
+    methods: {
+      closeLogin: function() {
+        api.closeWin();
+      },
+      changeBar:function(index){
+        this.currentBar = index;
+      },
+      goAppDtail:function(){
+        util.goPage("./app-detail.html");
+      }
+    },
+    created: function() {}
+  };
 </script>
