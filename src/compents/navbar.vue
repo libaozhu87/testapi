@@ -15,9 +15,9 @@
 
 </template>
 <style scoped>
-  .pr{
-    position: relative;
-  }
+.pr {
+  position: relative;
+}
 .column-center-background-a32 {
   flex-direction: column;
   justify-content: center;
@@ -47,7 +47,7 @@
   background-color: rgba(255, 255, 255, 1);
   border-color: rgba(213, 213, 213, 1);
   border-style: solid;
-  border-bottom-width: 1px;
+  border-bottom-width: 1px; /* no */
   padding-top: 25px;
   padding-bottom: 25px;
   display: flex;
@@ -56,7 +56,7 @@
 
 .wh {
   width: 750px;
-  height: 96px;
+  height: 94px;
   background: #ffffff;
 }
 .w52-h50-absolute-i3 {
@@ -78,10 +78,10 @@
 }
 </style>
 <script>
-import util from "../lib/util.js";
+import util from '../lib/util.js';
 
 export default {
-  props: ["title", "showdetailtext"],
+  props: ['title', 'showdetailtext'],
   data: function() {
     return {};
   },
@@ -90,7 +90,7 @@ export default {
       api.closeWin();
     },
     goDetail: function() {
-      util.goPage("./user-contribute-detail.html");
+      util.goPage('./user-contribute-detail.html');
     }
   },
   created: function() {}

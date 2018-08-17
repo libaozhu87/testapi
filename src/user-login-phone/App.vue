@@ -72,7 +72,7 @@
   background-color: rgba(255, 255, 255, 1);
   border-color: rgba(213, 213, 213, 1);
   border-style: solid;
-  border-bottom-width: 1px;
+  border-bottom-width: 1px; /* no */
   padding-top: 25px;
   padding-bottom: 25px;
   display: flex;
@@ -106,7 +106,7 @@
   height: 1233px;
   align-self: flex-start;
   background-color: rgba(255, 255, 255, 1);
-  margin-top: 1px;
+  margin-top: 1px; /* no */
   display: flex;
 }
 
@@ -198,7 +198,7 @@
   text-align: center;
   font-family: PingFangSC-Regular;
   font-size: 28px;
-  border: 1px solid #9013fe;
+  border: 1px solid #9013fe; /* no */
   color: #9013fe;
   line-height: 40px;
   font-weight: normal;
@@ -233,7 +233,7 @@
   font-size: 26px;
   color: #4a90e2;
   line-height: 37px;
-  div-decoration: underline;
+  decoration: underline;
   font-weight: normal;
   margin-top: 29px;
   margin-left: 0.5px;
@@ -253,7 +253,7 @@
 .w166-h1-i16 {
   position: relative;
   width: 166px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
 }
 
@@ -271,10 +271,10 @@
 .w166-h1-i17 {
   position: relative;
   width: 166px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
 
-  margin-top: 1px;
+  margin-top: 1px; /* no */
   margin-left: 7px;
 }
 
@@ -289,10 +289,10 @@
 }
 </style>
 <script>
-import statusbar from "../compents/statusbar.vue";
-import navbar from "../compents/navbar.vue";
-import protocol from "../compents/protocol.vue";
-import util from "../lib/util.js";
+import statusbar from '../compents/statusbar.vue';
+import navbar from '../compents/navbar.vue';
+import protocol from '../compents/protocol.vue';
+import util from '../lib/util.js';
 
 export default {
   data: function() {
@@ -300,9 +300,9 @@ export default {
       checked: true,
       loadnum: 59,
       isSendVerify: false,
-      phoneNum: "",
-      phoneVerify: "",
-      verifyText: "获取验证码"
+      phoneNum: '',
+      phoneVerify: '',
+      verifyText: '获取验证码'
     };
   },
   components: { statusbar, navbar, protocol },
@@ -310,56 +310,50 @@ export default {
     goLoginAjax: function() {
       if (this.checked && this.phoneNum && this.phoneVerify) {
         util.ajax(
-          "https://restful.yatou.com/user/login_mobile/",
+          'https://restful.yatou.com/user/login_mobile/',
           {
             mobile: this.phoneNum,
             verifcode: this.phoneVerify
           },
           function(res) {
-            console.log(res);
+            //console.log(res);
             var data = res.data;
-            util.mystorage.clear();
-            util.mystorage.set("token", data.token);
-            util.mystorage.set("mobile", data.mobile);
-
-            api.setFrameGroupIndex({
-              name: "group",
-              index: 2,
-              reload: true
-            });
-            //util.goPage("./frame2.html");
-            //util.alert(res.msg);
-          }
+            util.login(data);
+          },
+          null,
+          true
         );
       }
     },
     loadTime: function() {
       var self = this;
       var loadnum = self.loadnum;
-      self.verifyText = "重新发送(60)";
+      self.verifyText = '重新发送(60)';
       var setID = setInterval(function() {
-        self.verifyText = "重新发送(" + loadnum-- + ")";
+        self.verifyText = '重新发送(' + loadnum-- + ')';
         if (loadnum <= 0) {
           self.isSendVerify = false;
           clearInterval(setID);
-          self.verifyText = "获取验证码";
+          self.verifyText = '获取验证码';
         }
       }, 1000);
     },
     doSendVerify: function() {
       util.ajax(
-        "https://restful.yatou.com/user/sendcode/",
+        'https://restful.yatou.com/user/sendcode/',
         {
           mobile: this.phoneNum
         },
         function(res) {
           console.log(res);
-        }
+        },
+        null,
+        true
       );
     },
     sendVerify: function() {
       if (!this.phoneNum) {
-        util.alert("需要输入手机号");
+        util.alert('需要输入手机号');
         return;
       }
       if (!this.isSendVerify) {
@@ -369,7 +363,7 @@ export default {
       }
     },
     goPage: function() {
-      util.goPage("./user-login-password.html");
+      util.goPage('./user-login-password.html');
     },
 
     onProtocolcheck: function(msg) {

@@ -1,5 +1,5 @@
 var path = require("path");
-var webpack = require(".3.12.0@webpack");
+var webpack = require("webpack");
 var entryConfig = require("./entry.conf.js");
 var entry = entryConfig({
   dirPath: path.resolve(process.cwd(), "./src"),
@@ -36,8 +36,7 @@ module.exports = {
     }
   }, */
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
         use: ["vue-style-loader", "css-loader", px2rem]
       },

@@ -1,12 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
 
-
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App }
+window.$api.ready(function () {
+  window.appVue = new Vue(App).$mount('#app');
 })
-
-
-

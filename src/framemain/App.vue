@@ -5,7 +5,6 @@
     </div>
     <div id="footer" class="border-t">
       <div id="g13" class="white-column-flex-start-w750-g13">
-
         <div id="g17" class="row-space-between-w750-g17">
           <div id="g14" @click="randomSwitchBtn(0)" class="column-flex-start-g14">
             <img v-if='active == 0' class="w36-h33-up-i3" src='https://gw.alicdn.com/tfs/TB15ffdGrSYBuNjSspiXXXNzpXa-69-66.png' />
@@ -104,7 +103,6 @@
   font-weight: normal;
   margin-top: 8px;
 }
-
 .column-flex-start-g15 {
   flex-direction: column;
   justify-content: flex-start;
@@ -193,16 +191,15 @@ export default {
       active: 0
     };
   },
+
   components: {},
   methods: {
-    test: function() {
-      //console.log("mainApp");
-    },
+    test: function() {},
     randomSwitchBtn: function(index) {
       index = parseInt(index);
       this.active = index;
       api.setFrameGroupIndex({
-        name: "group",
+        name: 'group',
         index: index
       });
     }

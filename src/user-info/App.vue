@@ -4,7 +4,6 @@
 
       <statusbar></statusbar>
       <navbar title="基本资料"></navbar>
-
       <div id="g40" class="white-column-flex-start-down-g40">
         <div id="g25" class="row-space-between-w688-g25">
           <img id="i2" class="w90-h90-left-i2" src='https://gw.alicdn.com/tfs/TB1ilDOGpOWBuNjy0FiXXXFxVXa-90-90.png' />
@@ -25,7 +24,7 @@
           <div id="g30" class="ltgray-column-flex-start-right-g30">
             <img id="i17" :style="{'width':starlevelWidth+'px'}" class="w160-h4-i17" src='https://gw.alicdn.com/tfs/TB1bap5GGmWBuNjy1XaXXXCbXXa-160-4.png' /> </div>
         </div>
-        <img id="i7" class="w744-h2-i7" src='https://gw.alicdn.com/tfs/TB1LLu1GwmTBuNjy1XbXXaMrVXa-744-2.png' />
+        <img id="i7" class="w744-h2-i7" src='https://gw.alicdn.com/tfs/TB1.cURGr9YBuNjy0FgXXcxcXXa-750-1.png' />
         <div id="t10" class="black-size26-t10">全民股东ID：13599068878</div>
         <img id="i9" class="w750-h1-i9" src='https://gw.alicdn.com/tfs/TB1.fu1GwmTBuNjy1XbXXaMrVXa-750-1.png' />
         <div id="g38" class="row-space-between-w698-g38">
@@ -124,11 +123,10 @@
 .w750-h1-i6 {
   position: relative;
   width: 750px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: flex-end;
-
-  margin-right: 1px;
-  margin-left: 1px;
+  margin-right: 1px; /* no */
+  margin-left: 1px; /* no */
 }
 
 .row-space-between-w693-g28 {
@@ -153,7 +151,7 @@
   color: #444444;
   line-height: 37px;
   font-weight: bold;
-  margin-top: 1px;
+  margin-top: 1px; /* no */
 }
 
 .row-flex-start-right-g43 {
@@ -162,7 +160,7 @@
   align-items: center;
   position: relative;
   align-self: flex-start;
-  margin-bottom: 1px;
+  margin-bottom: 1px; /* no */
   display: flex;
 }
 
@@ -189,10 +187,10 @@
 .w750-h1-i8 {
   position: relative;
   width: 750px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: flex-end;
-  margin-right: 1px;
-  margin-left: 1px;
+  margin-right: 1px; /* no */
+  margin-left: 1px; /* no */
 }
 
 .row-space-between-w365-g31 {
@@ -202,7 +200,7 @@
   position: relative;
   width: 365px;
   align-self: flex-start;
-  margin-top: 31px;
+  margin-top: 31px; /* no */
   margin-right: 354px;
   margin-bottom: 27px;
   margin-left: 33px;
@@ -247,7 +245,7 @@
 .w744-h2-i7 {
   position: relative;
   width: 750px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: flex-end;
 }
 
@@ -268,11 +266,11 @@
 .w750-h1-i9 {
   position: relative;
   width: 750px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: flex-end;
 
-  margin-right: 1px;
-  margin-left: 1px;
+  margin-right: 1px; /* no */
+  margin-left: 1px; /* no */
 }
 
 .row-space-between-w698-g38 {
@@ -332,9 +330,9 @@
 </style>
 
 <script>
-import statusbar from "../compents/statusbar.vue";
-import navbar from "../compents/navbar.vue";
-import util from "../lib/util.js";
+import statusbar from '../compents/statusbar.vue';
+import navbar from '../compents/navbar.vue';
+import util from '../lib/util.js';
 
 export default {
   data: function() {
@@ -346,18 +344,21 @@ export default {
   components: { statusbar, navbar },
   methods: {
     goUserModifiedName: function() {
-      util.goPage("./user-modified-name.html");
+      util.goPage('./user-modified-name.html');
+    },
+    initcreated: function() {
+      var self = this;
+      util.getUserInfo(function(data) {
+        if (data) {
+          self.usreData = data;
+          var sw = $api.dom('#g30').offsetWidth;
+          self.starlevelWidth = Math.floor(self.usreData.starlevel * sw / 100);
+        }
+      });
     }
   },
   created: function() {
-    var self = this;
-    util.getUserInfo(function(data) {
-      if (data) {
-        self.usreData = data;
-        var sw = $api.dom("#g30").offsetWidth;
-        self.starlevelWidth = Math.floor(self.usreData.starlevel * sw / 100);
-      }
-    });
+    this.initcreated();
   }
 };
 </script>

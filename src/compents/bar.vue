@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div id="g26" class="white-column-flex-start-g26">
       <div class="row-center-w750-g23">
         <div id="t5" @click="changeBar(1)" class="magenta-size26-t5 flex1 t-c" :class="{'choosebartext':currentBar==1}">{{menu[0]}}</div>
@@ -48,7 +47,7 @@ body {
   font-family: PingFangSC-Regular;
 
   font-size: 26px;
-  margin-left: -1px;
+  margin-left: -1px; /* no */
   color: #444444;
   line-height: 37px;
   font-weight: normal;
@@ -106,7 +105,7 @@ body {
   font-size: 26px;
   color: #3a3a3a;
   line-height: 37px;
-  margin-right: -1px;
+  margin-right: -1px; /* no */
   font-weight: normal;
 }
 .choosebar1 {
@@ -139,9 +138,9 @@ body {
 
 
 <script>
-import util from "../lib/util.js";
+import util from '../lib/util.js';
 export default {
-  props: ["menu"],
+  props: ['menu'],
   data: function() {
     return {
       currentBar: 1
@@ -151,7 +150,7 @@ export default {
   methods: {
     changeBar: function(index) {
       this.currentBar = index;
-      this.$emit("currentbarindex", this.currentBar);
+      this.$emit('currentbarindex', this.currentBar);
     }
   },
   created: function() {}

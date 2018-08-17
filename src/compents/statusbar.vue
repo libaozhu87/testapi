@@ -11,17 +11,22 @@
   z-index: 99;
   width: 750px;
 }
-  .bar{
-    position: absolute;
-    top:0px;
-    left: 0px;
-    z-index: 99;
-    background-color: #fff;
+.bar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  height: 40px;
+  width: 750px;
 
-  }
+  background-color: #fff;
+}
 </style>
 <script>
 export default {
+  data: function() {
+    return {};
+  },
   methods: {},
   created: function() {}
 };

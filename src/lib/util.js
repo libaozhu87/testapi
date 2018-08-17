@@ -3,7 +3,7 @@
  * @author zhanghong
  */
 
-var util = (function() {
+var util = (function () {
   const isAndroid = /Android/i.test(navigator.userAgent);
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
   var mystorage = (function mystorage() {
@@ -14,7 +14,7 @@ var util = (function() {
       return false;
     }
 
-    var set = function(key, value) {
+    var set = function (key, value) {
       //存储
       var mydata = storage.getItem(ms);
       if (!mydata) {
@@ -27,7 +27,7 @@ var util = (function() {
       return mydata.data;
     };
 
-    var get = function(key) {
+    var get = function (key) {
       //读取
       var mydata = storage.getItem(ms);
       if (!mydata) {
@@ -38,7 +38,7 @@ var util = (function() {
       return mydata.data[key];
     };
 
-    var remove = function(key) {
+    var remove = function (key) {
       //读取
       var mydata = storage.getItem(ms);
       if (!mydata) {
@@ -51,12 +51,12 @@ var util = (function() {
       return mydata.data;
     };
 
-    var clear = function() {
+    var clear = function () {
       //清除对象
       storage.removeItem(ms);
     };
 
-    var init = function() {
+    var init = function () {
       storage.setItem(ms, '{"data":{}}');
     };
     return {
@@ -70,19 +70,26 @@ var util = (function() {
 
   return {
     mystorage: mystorage,
-    ajax: function(url, data, bc, method) {
-      var token = this.mystorage.get("token");
-      if (token) {
-        var header = { Authorization: "Token " + token };
+    ajax: function (url, data, bc, method, isFalseToken) {
+      var header = {}
+      if (!isFalseToken) {
+        var token = this.mystorage.get("token");
+        if (token) {
+          header = {
+            Authorization: "Token " + token
+          };
+          /*     header = {
+                Authorization: "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6IjE1MjExODg3NzMzIiwiZXhwIjoxNTM1NzE2NDgwLCJlbWFpbCI6IiJ9.N4pUB7nBCKklniLaZYVwgTlAZ9cEvWIGO1wAZb34sxY"
+              }; */
+        }
       }
-
       if (isAndroid || isIOS) {
         this.apiPost(url, data, bc, header, method);
       } else {
         this.fetchPost(url, data, bc, header, method);
       }
     },
-    fetchPost: function(url, data, bc, header, method) {
+    fetchPost: function (url, data, bc, header, method) {
       header = header || {};
       method = method || "POST";
       //Authorization
@@ -90,12 +97,12 @@ var util = (function() {
         Accept: "application/json",
         "Content-Type": "application/x-www-form-urlencoded"
       };
-      Object.assign(headers, header);
+      headers = this.extend(header, headers)
+
       this._fetch(
         url,
         data,
-        method,
-        {
+        method, {
           dataType: "json",
           cookie: true,
           headers: headers
@@ -104,13 +111,13 @@ var util = (function() {
       );
     },
 
-    o2s: function(obj, arr = [], idx = 0) {
+    o2s: function (obj, arr = [], idx = 0) {
       for (let item in obj) {
         arr[idx++] = [item, obj[item]];
       }
       return new URLSearchParams(arr).toString();
     },
-    _fetch: function(url, data, method = "GET", options = {}, bc) {
+    _fetch: function (url, data, method = "GET", options = {}, bc) {
       const body = this.o2s(data);
       let params = {
         method: method
@@ -126,8 +133,8 @@ var util = (function() {
       } */
       if (options.headers != undefined && typeof options.headers == "object") {
         params.headers = new Headers(options.headers);
-        console.log(options.headers);
-        console.log(params.headers);
+        /*  console.log(options.headers);
+         console.log(params.headers); */
       } else {
         params.headers = new Headers({
           Accept: "application/json",
@@ -136,20 +143,30 @@ var util = (function() {
       }
       fetch(url, params)
         .then(r => (options.dataType == "text" ? r.text() : r.json()))
-        .then(function(r) {
+        .then(function (r) {
           bc(r);
         });
     },
-    apiPost: function(url, data, bc, header, method) {
+
+    extend: function (options, target) {
+      var target = target || this;
+      for (var key in options) {
+        target[key] = options[key];
+      }
+      return target;
+    },
+    apiPost: function (url, data, bc, header, method) {
+      var self = this;
       data = data || {};
       header = header || {};
       method = method || "POST";
       var headers = {
         "Content-Type": "application/json"
       };
-      Object.assign(headers, header);
-      api.ajax(
-        {
+      //Object.assign(headers, header);
+      headers = this.extend(header, headers)
+
+      api.ajax({
           url: url,
           method: method,
           headers: headers,
@@ -157,30 +174,78 @@ var util = (function() {
             body: data
           }
         },
-        function(ret, err) {
+        function (ret, err) {
           if (ret) {
             bc(ret);
             console.log(JSON.stringify(ret));
-            //api.alert({ msg: JSON.stringify(ret) });
+            /*    api.alert({
+                 msg: JSON.stringify(ret)
+               }); */
           } else {
             console.log(JSON.stringify(err));
-            //api.alert({ msg: JSON.stringify(err) });
+            /*   api.alert({
+                msg: JSON.stringify(err)
+              }); */
           }
         }
       );
     },
-    getUserInfo: function(bc) {
+    login: function (data) {
+      this.mystorage.clear();
+      this.mystorage.set('token', data.token);
+      this.mystorage.set('mobile', data.mobile);
+
+      api.setFrameGroupIndex({
+        name: 'group',
+        index: 2,
+        reload: true
+      });
+
+    },
+
+    loginout: function (data) {
+      this.mystorage.clear();
+      /*      this.mystorage.set('token', data.token);
+           this.mystorage.set('mobile', data.mobile); */
+      /*     api.openFrameGroup({
+            name: 'group'
+          }); */
+      api.closeWin();
+      api.setFrameGroupIndex({
+        name: 'group',
+        index: 1,
+        reload: true
+      });
+      //console.log("ssxx");
+    },
+    getQueryString: function () {
+      var qs = location.search.substr(1), // 获取url中"?"符后的字串  
+        args = {}, // 保存参数数据的对象
+        items = qs.length ? qs.split("&") : [], // 取得每一个参数项,
+        item = null,
+        len = items.length;
+
+      for (var i = 0; i < len; i++) {
+        item = items[i].split("=");
+        var name = decodeURIComponent(item[0]),
+          value = decodeURIComponent(item[1]);
+        if (name) {
+          args[name] = value;
+        }
+      }
+      return args;
+    },
+
+    getUserInfo: function (bc) {
       var token = this.mystorage.get("token");
-      console.log("token");
-      console.log(token);
+
       if (token) {
         util.ajax(
-          "https://restful.yatou.com/user",
-          {},
-          function(res) {
+          "https://restful.yatou.com/user", {},
+          function (res) {
             var usreData = res[0];
             bc(usreData);
-            console.log(usreData);
+            //console.log(usreData);
           },
           "GET"
         );
@@ -188,10 +253,14 @@ var util = (function() {
         bc(null);
       }
     },
-    goPage: function(url, name) {
+    goPage: function (url, name) {
       if (isAndroid || isIOS) {
         console.log(new Date().getTime() + "");
         name = name || new Date().getTime() + "";
+
+        /*       api.closeFrameGroup({
+                name: 'group'
+              }); */
         api.openWin({
           name: name,
           url: url
@@ -201,14 +270,13 @@ var util = (function() {
         location.href = url;
       }
     },
-    alert: function(msg) {
+    alert: function (msg) {
       if (isAndroid || isIOS) {
-        api.alert(
-          {
+        api.alert({
             title: "消息",
             msg: msg
           },
-          function(ret, err) {}
+          function (ret, err) {}
         );
       } else {
         alert(msg);

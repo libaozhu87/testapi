@@ -9,14 +9,14 @@
             <img id="i3" class="w750-h316-absolute-i3" src='https://gw.alicdn.com/tfs/TB15N_gGrGYBuNjy0FoXXciBFXa-750-316.png' />
             <div id="g39" class="column-flex-start-w750-g39">
               <div id="g38" class="row-space-between-w750-up-g38">
-                <div id="t5" v-if="usreData" class="white-size26-left-t5">算力：{{usreData.power}}</div>
-                <div id="t6" v-if="usreData" class="white-size26-right-t6"> 源石：{{usreData.diamond}}</div>
+                <div id="t5" v-if="usreData" class="white-size26-left-t5">算力：{{usreData.power||0}}</div>
+                <div id="t6" v-if="usreData" class="white-size26-right-t6"> 源石：{{usreData.diamond||0}}</div>
               </div>
-              <img v-if="usreData" @click="goInfo()"  class="w130-h130-down-i7" src='https://gw.alicdn.com/tfs/TB1gd2FGx9YBuNjy0FfXXXIsVXa-130-130.png' /> </div>
+              <img v-if="usreData" @click="goInfo()" class="w130-h130-down-i7" src='https://gw.alicdn.com/tfs/TB1gd2FGx9YBuNjy0FfXXXIsVXa-130-130.png' /> </div>
             <img v-if="!usreData" @click="goLogin()" class="w130-h130-down-i7" src='https://gw.alicdn.com/tfs/TB1dyboJXOWBuNjy0FiXXXFxVXa-260-260.png' /> </div>
         </div>
         <div id="g41" class="row-center-w750-g41">
-          <div id="t37" v-if="usreData" class="magenta-size22-absolute-t37">星级：{{usreData.starlevel}}</div>
+          <div id="t37" v-if="usreData" class="magenta-size22-absolute-t37">星级：{{usreData.starlevel||1}}</div>
           <div v-if="usreData" class="black-size26-t4">{{usreData.nikename}}</div>
           <div v-if="!usreData" class="black-size26-t4">未登录</div>
         </div>
@@ -77,17 +77,11 @@
       <img id="i24" class="w10-h18-right-i24" src='https://gw.alicdn.com/tfs/TB1RA7tGr9YBuNjy0FgXXcxcXXa-10-18.png' />
     </div>
 
-
-
-
     <div id="g5" class="white-column-flex-start-w74-h77-g5" @click="doShowAlert()">
       <img id="i1" class="w59-h64-absolute-i1" src='https://gw.alicdn.com/tfs/TB1esXnczfguuRjSspkXXXchpXa-59-64.png' />
       <div id="t3" class="white-size20-t3">900</div>
     </div>
-
     <alertItem v-if="showAlert"></alertItem>
-
-
   </div>
 </template>
 
@@ -701,7 +695,7 @@
   right: 24px;
   width: 74px;
   height: 77px;
-  background-color:transparent;
+  background-color: transparent;
   display: flex;
   z-index: 33;
 }
@@ -712,7 +706,6 @@
   height: 64px;
   left: 0;
   top: 0;
-
 }
 
 .white-size20-t3 {
@@ -722,74 +715,69 @@
   border-radius: 100px;
   font-family: PingFangSC-Regular;
   font-size: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   line-height: 22px;
   font-weight: normal;
   margin-top: 49px;
   padding-right: 2px;
   padding-left: 3px;
 }
-
-
 </style>
 
 <script>
-import util from "../lib/util.js";
-import alertItem from "./alertItem.vue";
-
+import util from '../lib/util.js';
+import alertItem from './alertItem.vue';
 export default {
   data: function() {
     return {
       usreData: null,
       starlevelWidth: 0,
-      showAlert:false
+      showAlert: false
     };
   },
-  components: {alertItem},
+  components: { alertItem },
   methods: {
-    doShowAlert:function(){
+    doShowAlert: function() {
       this.showAlert = !this.showAlert;
     },
     goCash: function() {
-      util.goPage("./user-cash.html");
-
+      util.goPage('./user-cash.html');
     },
 
-    goAbout:function(){
-  util.goPage("./user-about.html");
-},
-    goInfo:function(){
-      util.goPage("./user-info.html");
+    goAbout: function() {
+      util.goPage('./user-about.html');
+    },
+    goInfo: function() {
+      util.goPage('./user-info.html');
     },
     goSet: function() {
-      util.goPage("./user-set.html");
+      util.goPage('./user-set.html');
     },
     goFriend: function() {
-      util.goPage("./user-friend.html");
+      util.goPage('./user-friend.html');
     },
     goLogin: function() {
-      util.goPage("./user-login-phone.html");
+      util.goPage('./user-login-phone.html');
     },
     goGuide: function() {
-      util.goPage("./user-guide.html");
+      util.goPage('./user-guide.html');
     },
     goNews: function() {
-      util.goPage("./user-news.html");
+      util.goPage('./user-news.html');
+    },
+    initcreated: function() {
+      var self = this;
+      util.getUserInfo(function(data) {
+        if (data) {
+          self.usreData = data;
+          var sw = $api.dom('#g72').offsetWidth;
+          self.starlevelWidth = Math.floor(self.usreData.starlevel * sw / 100);
+        }
+      });
     }
   },
-  mounted: function() {
-    console.log("mounted");
-  },
   created: function() {
-    var self = this;
-    console.log("111");
-    util.getUserInfo(function(data) {
-      if (data) {
-        self.usreData = data;
-        var sw = $api.dom("#g72").offsetWidth;
-        self.starlevelWidth = Math.floor(self.usreData.starlevel * sw / 100);
-      }
-    });
+    this.initcreated();
   }
 };
 </script>
