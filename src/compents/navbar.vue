@@ -3,16 +3,14 @@
 
   <div class="pr">
     <div id="g18" class="white-row-center-w750-up-g18">
-      <img id="i3" @click="closeLogin" class="w52-h50-absolute-i3" src='https://gw.alicdn.com/tfs/TB196KOGXGWBuNjy0FbXXb4sXXa-52-50.png' />
+      <img v-if="!hiddenback" id="i3" @click="closeLogin" class="w52-h50-absolute-i3" src='https://gw.alicdn.com/tfs/TB196KOGXGWBuNjy0FbXXb4sXXa-52-50.png' />
       <div id="t2" class="black-size32-t2">{{title}}</div>
       <div v-if="showdetailtext" id="a32" class="column-center-background-a32">
         <div id="t16" class="cyan-size26-t16" @click="goDetail">贡献明细</div>
       </div>
     </div>
     <div class="wh"></div>
-
   </div>
-
 </template>
 <style scoped>
 .pr {
@@ -81,7 +79,7 @@
 import util from '../lib/util.js';
 
 export default {
-  props: ['title', 'showdetailtext'],
+  props: ['title', 'showdetailtext', 'hiddenback'],
   data: function() {
     return {};
   },

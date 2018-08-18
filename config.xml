@@ -1,6 +1,7 @@
  <widget id="A6086296168931"  version="0.0.1">
 
     <name>xx</name>
+	
 
     <description>
 
@@ -15,8 +16,8 @@
     </author>
 
     <content src="index.html" />
-
     <access origin="*" />
+<preference name="customRefreshHeader" value="UIPullRefreshFlash"/>
 
     <preference name="pageBounce" value="false"/>
 

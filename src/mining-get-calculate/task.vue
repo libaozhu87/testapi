@@ -13,12 +13,12 @@
           </div>
 
           <div id="g111" class="row-flex-start-right-g111">
-            <div id="t20" class="magenta-size24-left-t20">去完成</div>
+            <!--        <div id="t20" class="magenta-size24-left-t20">去完成</div>
 
             <div id="g76" class="white-row-flex-start-w110-h40-left-g76">
               <img id="i44" class="w110-h40-background-i44" src='https://gw.alicdn.com/tfs/TB1yuM1GxGYBuNjy0FnXXX5lpXa-110-40.png' />
               <div id="t45" class="white-size24-t45">领取奖励</div>
-            </div>
+            </div> -->
             <div id="t20" class="magenta-size24-left-t20-1">已完成</div>
 
             <img id="i17" class="w30-h30-right-i17" src='https://gw.alicdn.com/tfs/TB1.PvBGAyWBuNjy0FpXXassXXa-30-30.png' /> </div>
@@ -32,12 +32,12 @@
           </div>
           <div id="g113" class="row-flex-start-right-g113">
 
-            <div id="t20" class="magenta-size24-left-t20">去完成</div>
+            <!--          <div id="t20" class="magenta-size24-left-t20">去完成</div>
 
             <div id="g76" class="white-row-flex-start-w110-h40-left-g76">
               <img id="i44" class="w110-h40-background-i44" src='https://gw.alicdn.com/tfs/TB1yuM1GxGYBuNjy0FnXXX5lpXa-110-40.png' />
               <div id="t45" class="white-size24-t45">领取奖励</div>
-            </div>
+            </div> -->
             <div id="t20" class="magenta-size24-left-t20-1">已完成</div>
 
             <img id="i41" class="w30-h30-right-i41" src='https://gw.alicdn.com/tfs/TB1dkfOGrGYBuNjy0FoXXciBFXa-30-30.png' /> </div>
@@ -51,15 +51,16 @@
           </div>
           <div id="g115" class="row-flex-start-right-g115">
 
-            <div id="t20" class="magenta-size24-left-t20">去完成</div>
+            <!--            <div id="t20" class="magenta-size24-left-t20">去完成</div>
 
             <div id="g76" class="white-row-flex-start-w110-h40-left-g76">
               <img id="i44" class="w110-h40-background-i44" src='https://gw.alicdn.com/tfs/TB1yuM1GxGYBuNjy0FnXXX5lpXa-110-40.png' />
               <div id="t45" class="white-size24-t45">领取奖励</div>
-            </div>
+            </div> -->
             <div id="t20" class="magenta-size24-left-t20-1">已完成</div>
 
-            <img id="i49" class="w30-h30-right-i49" src='https://gw.alicdn.com/tfs/TB1J7fOGrGYBuNjy0FoXXciBFXa-30-30.png' /> </div>
+            <!--             <img id="i49" class="w30-h30-right-i49" src='https://gw.alicdn.com/tfs/TB1J7fOGrGYBuNjy0FoXXciBFXa-30-30.png' /> </div>
+ --><img id="i49" class="w30-h30-right-i49" src='https://gw.alicdn.com/tfs/TB1dkfOGrGYBuNjy0FoXXciBFXa-30-30.png' /> </div>
         </div>
         <img id="i50" class="w690-h1-down-i50" src='https://gw.alicdn.com/tfs/TB1mKv9GrSYBuNjSspiXXXNzpXa-690-1.png' /> </div>
       <div id="g87" class="white-column-center-w750-g87">

@@ -6,81 +6,85 @@
 var util = (function () {
   const isAndroid = /Android/i.test(navigator.userAgent);
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-  var mystorage = (function mystorage() {
-    var ms = "mystorage";
-    var storage = window.localStorage;
-    if (!window.localStorage) {
-      //alert("浏览器支持localstorage");
-      return false;
-    }
-
-    var set = function (key, value) {
-      //存储
-      var mydata = storage.getItem(ms);
-      if (!mydata) {
-        this.init();
-        mydata = storage.getItem(ms);
-      }
-      mydata = JSON.parse(mydata);
-      mydata.data[key] = value;
-      storage.setItem(ms, JSON.stringify(mydata));
-      return mydata.data;
-    };
-
-    var get = function (key) {
-      //读取
-      var mydata = storage.getItem(ms);
-      if (!mydata) {
-        return false;
-      }
-      mydata = JSON.parse(mydata);
-
-      return mydata.data[key];
-    };
-
-    var remove = function (key) {
-      //读取
-      var mydata = storage.getItem(ms);
-      if (!mydata) {
+  /*   var mystorage = (function mystorage() {
+      var ms = "mystorage";
+      var storage = window.localStorage;
+      if (!window.localStorage) {
+        //alert("浏览器支持localstorage"); 
+        console.log("浏览器支持localstorage")
         return false;
       }
 
-      mydata = JSON.parse(mydata);
-      delete mydata.data[key];
-      storage.setItem(ms, JSON.stringify(mydata));
-      return mydata.data;
-    };
+      var set = function (key, value) {
+        //存储
+        var mydata = storage.getItem(ms);
+        if (!mydata) {
+          this.init();
+          mydata = storage.getItem(ms);
+        }
+        mydata = JSON.parse(mydata);
+        mydata.data[key] = value;
+        storage.setItem(ms, JSON.stringify(mydata));
+        return mydata.data;
+      };
 
-    var clear = function () {
-      //清除对象
-      storage.removeItem(ms);
-    };
+      var get = function (key) {
+        //读取
+        var mydata = storage.getItem(ms);
+        if (!mydata) {
+          return false;
+        }
+        mydata = JSON.parse(mydata);
 
-    var init = function () {
-      storage.setItem(ms, '{"data":{}}');
-    };
-    return {
-      set: set,
-      get: get,
-      remove: remove,
-      init: init,
-      clear: clear
-    };
-  })();
+        return mydata.data[key];
+      };
+
+      var remove = function (key) {
+        //读取
+        var mydata = storage.getItem(ms);
+        if (!mydata) {
+          return false;
+        }
+
+        mydata = JSON.parse(mydata);
+        delete mydata.data[key];
+        storage.setItem(ms, JSON.stringify(mydata));
+        return mydata.data;
+      };
+
+      var clear = function () {
+        //清除对象
+        storage.removeItem(ms);
+      };
+
+      var init = function () {
+        storage.setItem(ms, '{"data":{}}');
+      };
+      return {
+        set: set,
+        get: get,
+        remove: remove,
+        init: init,
+        clear: clear
+      };
+    })(); */
+
+  /*     header = {
+              Authorization: "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6IjE1MjExODg3NzMzIiwiZXhwIjoxNTM1NzE2NDgwLCJlbWFpbCI6IiJ9.N4pUB7nBCKklniLaZYVwgTlAZ9cEvWIGO1wAZb34sxY"
+            }; */
 
   return {
-    mystorage: mystorage,
+    /*     mystorage: mystorage,
+     */
     ajax: function (url, data, bc, method, isFalseToken) {
       var header = {}
       if (!isFalseToken) {
-        var token = this.mystorage.get("token");
+        var token = window.mystorage.get("token");
         if (token) {
           header = {
             Authorization: "Token " + token
           };
-          /*     header = {
-                Authorization: "Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6IjE1MjExODg3NzMzIiwiZXhwIjoxNTM1NzE2NDgwLCJlbWFpbCI6IiJ9.N4pUB7nBCKklniLaZYVwgTlAZ9cEvWIGO1wAZb34sxY"
-              }; */
+
         }
       }
       if (isAndroid || isIOS) {
@@ -181,42 +185,54 @@ var util = (function () {
             /*    api.alert({
                  msg: JSON.stringify(ret)
                }); */
+
+
           } else {
             console.log(JSON.stringify(err));
-            /*   api.alert({
-                msg: JSON.stringify(err)
-              }); */
+            /*    api.alert({
+                 msg: JSON.stringify(err)
+               }); */
           }
         }
       );
     },
     login: function (data) {
-      this.mystorage.clear();
-      this.mystorage.set('token', data.token);
-      this.mystorage.set('mobile', data.mobile);
 
-      api.setFrameGroupIndex({
-        name: 'group',
-        index: 2,
-        reload: true
-      });
+      if (data.code != -1) {
+        window.mystorage.clear();
+        window.mystorage.set('token', data.token);
+        window.mystorage.set('mobile', data.mobile);
+        api.sendEvent({
+          name: 'myrefresh',
+        });
+        setTimeout(function () {
+          api.closeToWin({
+            name: 'root',
+            reload: true
+          });
+        }, 10)
+      } else {
+        this.alert(data.msg)
+      }
 
     },
 
     loginout: function (data) {
-      this.mystorage.clear();
-      /*      this.mystorage.set('token', data.token);
-           this.mystorage.set('mobile', data.mobile); */
-      /*     api.openFrameGroup({
-            name: 'group'
-          }); */
-      api.closeWin();
-      api.setFrameGroupIndex({
-        name: 'group',
-        index: 1,
-        reload: true
+      window.mystorage.clear();
+      //api.closeWin();
+
+      api.sendEvent({
+        name: 'myclear',
       });
-      //console.log("ssxx");
+      setTimeout(function () {
+        api.closeToWin({
+          name: 'root',
+          reload: true
+        });
+      }, 10)
+
+
+
     },
     getQueryString: function () {
       var qs = location.search.substr(1), // 获取url中"?"符后的字串  
@@ -236,9 +252,11 @@ var util = (function () {
       return args;
     },
 
-    getUserInfo: function (bc) {
-      var token = this.mystorage.get("token");
 
+    getUserInfo: function (bc) {
+      var token = window.mystorage.get("token");
+      console.log("getUserInfo token")
+      console.log(token)
       if (token) {
         util.ajax(
           "https://restful.yatou.com/user", {},
@@ -253,6 +271,18 @@ var util = (function () {
         bc(null);
       }
     },
+    addEvent: function (even, bc) {
+      if (isAndroid || isIOS) {
+        api.addEventListener({
+            name: even
+          },
+          function (ret) {
+            bc();
+          }
+        );
+      }
+
+    },
     goPage: function (url, name) {
       if (isAndroid || isIOS) {
         console.log(new Date().getTime() + "");
@@ -263,6 +293,7 @@ var util = (function () {
               }); */
         api.openWin({
           name: name,
+          scrollEnabled: true,
           url: url
         });
         //console.log(url);

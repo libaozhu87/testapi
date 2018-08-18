@@ -2,8 +2,76 @@
  * APICloud JavaScript Library
  * Copyright (c) 2014 apicloud.com
  */
+
+
+
+
 (function (window) {
   var u = {};
+
+  window.mystorage = (function mystorage() {
+    var ms = "mystorage";
+    var storage = window.localStorage;
+    if (!window.localStorage) {
+      //alert("浏览器支持localstorage"); 
+      console.log("浏览器支持localstorage")
+      return false;
+    }
+
+    var set = function (key, value) {
+      //存储
+      var mydata = storage.getItem(ms);
+      if (!mydata) {
+        this.init();
+        mydata = storage.getItem(ms);
+      }
+      mydata = JSON.parse(mydata);
+      mydata.data[key] = value;
+      storage.setItem(ms, JSON.stringify(mydata));
+      return mydata.data;
+    };
+
+    var get = function (key) {
+      //读取
+      var mydata = storage.getItem(ms);
+      if (!mydata) {
+        return false;
+      }
+      mydata = JSON.parse(mydata);
+
+      return mydata.data[key];
+    };
+
+    var remove = function (key) {
+      //读取
+      var mydata = storage.getItem(ms);
+      if (!mydata) {
+        return false;
+      }
+
+      mydata = JSON.parse(mydata);
+      delete mydata.data[key];
+      storage.setItem(ms, JSON.stringify(mydata));
+      return mydata.data;
+    };
+
+    var clear = function () {
+      //清除对象
+      storage.removeItem(ms);
+    };
+
+    var init = function () {
+      storage.setItem(ms, '{"data":{}}');
+    };
+    return {
+      set: set,
+      get: get,
+      remove: remove,
+      init: init,
+      clear: clear
+    };
+  })();
+
   var isAndroid = /android/gi.test(navigator.appVersion);
   /*   const isAndroid = /Android/i.test(navigator.userAgent);
    */
@@ -33,8 +101,40 @@
       dataType: dataType
     };
   }
-  u.ready = function (bc) {
-      console.log(bc);
+  u.loadRefresh = function (appvue) {
+      if (isAndroid || isIOS) {
+        api.setCustomRefreshHeaderInfo({
+          bgColor: '#ffffff',
+          isScale: true,
+          /*     image: {
+                  pull: [
+                    'widget://image/bottombtn0101.png',
+                    'widget://image/bottombtn0102.png',
+                    'widget://image/bottombtn0301.png',
+                    'widget://image/bottombtn0302.png',
+        
+                  ],
+                  load: [
+                    'widget://image/bottombtn0201.png',
+                    'widget://image/bottombtn0202.png',
+                    'widget://image/bottombtn0401.png',
+                    'widget://image/bottombtn0402.png',
+                  ]
+                } */
+        }, function () {
+          //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+          //下拉刷新被触发，使用 api.refreshHeaderLoadDone() 结束加载中状态  
+          //alert('开始加载刷新数据，摇一摇停止加载状态');
+          setTimeout(function () {
+            api.refreshHeaderLoadDone();
+            appvue.initcreated();
+          }, 1500)
+        });
+      } else {}
+
+    },
+    u.ready = function (bc) {
+      //console.log(bc);
       if (isAndroid || isIOS) {
         apiready = function () {
           bc()
@@ -52,6 +152,49 @@
         return str.replace(/(^\s*)|(\s*$)/g, "");
       }
     };
+
+  u.funIniGroup = function () {
+    var frames = [{
+        name: "frame0",
+        url: "./html/frame0.html",
+        bounces: true
+      },
+      {
+        name: "frame1",
+        url: "./html/frame1.html",
+        bounces: true
+      },
+      {
+        name: "frame2",
+        url: "./html/frame2.html",
+        bounces: true
+      }
+    ];
+    /*     console.log(isAndroid);
+        console.log(isIOS); */
+    var hh = api.winHeight - ($api.dom("#footer").offsetHeight / api.screenHeight * api.winHeight);
+    if (isAndroid) {
+      hh = api.winHeight - ($api.dom("#footer").offsetHeight);
+    }
+
+    /*       console.log($api.dom("#footer").offsetHeight);
+          console.log(api.screenHeight);
+          console.log(api.winHeight); */
+    api.openFrameGroup({
+      name: 'group',
+      scrollEnabled: false,
+      rect: {
+        x: 0,
+        y: 0,
+        w: api.winWidth,
+        h: hh
+      },
+      frames: frames
+    }, function (ret, err) {
+      console.log(JSON.stringify(ret));
+    });
+
+  };
   u.trimAll = function (str) {
     return str.replace(/\s*/g, "");
   };

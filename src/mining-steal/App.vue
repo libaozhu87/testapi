@@ -1,5 +1,9 @@
 <template>
   <div>
+
+    <statusbar></statusbar>
+    <navbar title="偷源石"></navbar>
+
     <div id="g97" class="white-column-flex-start-w750-g97">
       <div id="g96" class="column-flex-start-w750-g96">
         <div id="g64" class="row-flex-start-w750-h753-down-g64">
@@ -29,20 +33,21 @@
             </div>
             <div id="g60" class="row-space-between-w750-g60">
               <div id="g101" class="row-flex-start-left-g101">
-                <img id="i46" @click="goGetCalculate" class="w54-h54-left-i46" src='https://gw.alicdn.com/tfs/TB1d.XoJHGYBuNjy0FoXXciBFXa-54-54.png' />
-                <img id="i47" @click="goShop" class="w60-h60-right-i47" src='https://gw.alicdn.com/tfs/TB114.6JAyWBuNjy0FpXXassXXa-60-60.png' /> </div>
+                <!--                 <img id="i46" @click="goGetCalculate" class="w54-h54-left-i46" src='https://gw.alicdn.com/tfs/TB1d.XoJHGYBuNjy0FoXXciBFXa-54-54.png' />
+                <img id="i47" @click="goShop" class="w60-h60-right-i47" src='https://gw.alicdn.com/tfs/TB114.6JAyWBuNjy0FpXXassXXa-60-60.png' /> -->
+              </div>
               <div id="g59" class="column-flex-start-right-g59">
-                <div id="g58" class="row-center-w157-h60-up-g58" @click="goSteal()">
+                <div id="g58" class="row-center-w157-h60-up-g58">
                   <img id="i37" class="w157-h60-background-i37" src='https://gw.alicdn.com/tfs/TB1d4.6JAyWBuNjy0FpXXassXXa-157-60.png' />
-                  <div id="t38" class="white-size26-t38">偷源石</div>
+                  <div id="t38" class="white-size26-t38">一键偷取</div>
                 </div>
-                <div id="t34" class="white-size24-down-t34">源石剩余:{{diamondValue}}/10000万</div>
+                <div id="t34" class="white-size24-down-t34"></div>
               </div>
             </div>
-            <div id="g61" class="row-space-between-w750-g61">
+            <!--             <div id="g61" class="row-space-between-w750-g61">
               <div id="t48" @click="goGetCalculate" class="yellow-size24-left-t48">获取算力</div>
               <div id="t49" class="yellow-size24-right-t49" @click="goShop">兑换商品</div>
-            </div>
+            </div> -->
           </div>
 
           <div class="d-pos">
@@ -73,7 +78,7 @@
               </div>
 
             </div>
-            <div class="d-an d-item-warp anbg wh22" v-if="diamondlist.length<6">
+            <div class="d-an d-item-warp anbg" v-if="diamondlist.length<6">
               <img id="i23" class="w300-h300-i23" src='http://lubanpsdupload.oss-cn-shanghai.aliyuncs.com/hongxuan-sketch/hongxuan-sketch-module1534385853552.png' />
               <div id="t22" class="white-size26-down-t22 do-text">采矿中...</div>
             </div>
@@ -81,164 +86,262 @@
           </div>
 
         </div>
-        <div id="g95" class="row-flex-start-w750-h526-up-g95">
-          <img id="i2" class="w322-h33-absolute-i2" src='https://gw.alicdn.com/tfs/TB1dlsMJwmTBuNjy1XbXXaMrVXa-322-33.png' />
-          <div id="g94" class="row-flex-start-w750-h526-g94">
-            <img id="i4" class="w750-h526-background-i4" src='https://gw.alicdn.com/tfs/TB1MrD.JGmWBuNjy1XaXXXCbXXa-750-526.png' />
-            <div id="g93" class="column-flex-start-g93">
-              <div id="g68" class="row-space-between-w750-g68">
-                <div id="t9" class="dkgray-size24-left-t9">更新于每天凌晨0点</div>
-                <div id="g98" class="row-flex-start-right-g98">
-                  <div id="g65" class="row-center-w200-h60-left-g65" @click="changeRank(1)">
+        <bar @currentbarindex="changeBar" :menu="menu"></bar>
+        <div v-if="currentBar==1">
 
-                    <div id="i5" class="w200-h60-background-i5" :class="{'active':ranktype==1}"></div>
-                    <div id="t7" class="dkgray-size26-t7" :class="{'activetext':ranktype==1}">源石排行榜</div>
-                  </div>
-                  <div id="g66" class="row-center-w200-h60-right-g66" @click="changeRank(2)">
-                    <!--                     <img id="i6" class="w200-h60-background-i6" src='https://gw.alicdn.com/tfs/TB12bD.JGmWBuNjy1XaXXXCbXXa-200-60.png' />
- -->
-                    <div id="i6" class="w200-h60-background-i6" :class="{'active':ranktype==2}"></div>
-                    <div id="t8" class="magenta-size26-t8" :class="{'activetext':ranktype==2}">算力排行榜</div>
-                  </div>
-                </div>
-              </div>
-              <div v-if="ranktype==1">
-                <div id="g72" class="white-row-center-w750-g72">
-                  <div id="g99" class="row-space-between-w226-left-g99">
-                    <div id="t11" class="black-size24-left-t11">名次</div>
-                    <div id="t12" class="black-size24-right-t12">昵称</div>
-                  </div>
-                  <div id="g100" class="row-space-between-w294-right-g100">
-                    <div id="t13" class="black-size24-left-t13">今日所得源石</div>
-                    <div id="t14" class="black-size24-right-t14">源石总量</div>
-                  </div>
-                </div>
-                <div v-for="(item,index) in diamondranklist">
-                  <div id="g75" class="row-flex-start-w750-g75">
-                    <img id="i16" v-if="index==0" class="w50-h54-i16" src='https://gw.alicdn.com/tfs/TB1Grk7JuuSBuNjy1XcXXcYjFXa-50-54.png' />
-                    <img id="i16" v-if="index==1" class="w50-h54-i16" src='https://gw.alicdn.com/tfs/TB1HlEMJwmTBuNjy1XbXXaMrVXa-55-55.png' />
-                    <img id="i16" v-if="index==2" class="w50-h54-i16" src='https://gw.alicdn.com/tfs/TB17bH.JGmWBuNjy1XaXXXCbXXa-55-55.png' />
-                    <div id="t30" v-if="index>=3" class="black-size24-t30">{{index}}</div>
-
-                    <div id="t15" class="black-size24-t15">{{item.username}}</div>
-                    <div id="t17" class="black-size24-t17">{{item.today_diamond||0}}</div>
-                    <div id="t18" class="black-size24-t18">{{item.diamond}}</div>
-                  </div>
-                  <img id="i19" class="w750-h3-i19" src='https://gw.alicdn.com/tfs/TB1dYH.JGmWBuNjy1XaXXXCbXXa-750-3.png' />
-                </div>
-              </div>
-
-              <div v-if="ranktype==2">
-                <div id="g72" class="white-row-center-w750-g72">
-                  <div id="g99" class="row-space-between-w226-left-g99">
-                    <div id="t11" class="black-size24-left-t11">名次</div>
-                    <div id="t12" class="black-size24-right-t12">昵称</div>
-                  </div>
-                  <div id="g100" class="row-space-between-w294-right-g100">
-                    <div id="t13" class="black-size24-left-t13">今日所得算力</div>
-                    <div id="t14" class="black-size24-right-t14">算力总量</div>
-                  </div>
-                </div>
-                <div v-for="(item,index) in powerranklist">
-                  <div id="g75" class="row-flex-start-w750-g75">
-                    <!--                     <img id="i16" class="w50-h54-i16" src='https://gw.alicdn.com/tfs/TB1Grk7JuuSBuNjy1XcXXcYjFXa-50-54.png' /> 
- -->
-                    <img id="i16" v-if="index==0" class="w50-h54-i16" src='https://gw.alicdn.com/tfs/TB1Grk7JuuSBuNjy1XcXXcYjFXa-50-54.png' />
-                    <img id="i16" v-if="index==1" class="w50-h54-i16" src='https://gw.alicdn.com/tfs/TB1HlEMJwmTBuNjy1XbXXaMrVXa-55-55.png' />
-                    <img id="i16" v-if="index==2" class="w50-h54-i16" src='https://gw.alicdn.com/tfs/TB17bH.JGmWBuNjy1XaXXXCbXXa-55-55.png' />
-                    <div id="t30" v-if="index>=3" class="black-size24-t30">{{index}}</div>
-
-                    <div id="t15" class="black-size24-t15">{{item.username}}</div>
-                    <div id="t17" class="black-size24-t17">{{item.today_power||0}}</div>
-                    <div id="t18" class="black-size24-t18">{{item.power}}</div>
-                  </div>
-                  <img id="i19" class="w750-h3-i19" src='https://gw.alicdn.com/tfs/TB1dYH.JGmWBuNjy1XaXXXCbXXa-750-3.png' />
-                </div>
-
-              </div>
-
-            </div>
+          <div v-if="!master.length">
+            <nofrienddata></nofrienddata>
           </div>
+
+          <div class="white-column-flex-start-w750-g17" v-if="master.length">
+            <div id="g12" class="white-row-space-between-w750-up-g12">
+              <div id="t2" class="black-size22-t2">昵称</div>
+              <div id="t3" class="black-size22-t3">星级</div>
+              <div id="t4" class="black-size22-t4">算力</div>
+            </div>
+
+            <div v-for="item in master" id="g16" class="white-column-flex-start-down-g16">
+              <div id="g14" class="row-center-w750-up-g14">
+                <div id="a18" class="column-center-background-a18">
+                  <div class="black-size24-t7">{{item.username}}</div>
+                </div>
+                <div class="black-size24-t8">{{item.starlevel}}</div>
+                <div id="a19" class="column-center-background-a19">
+                  <div id="t6" class="black-size24-t6">{{item.power}}</div>
+                </div>
+              </div>
+              <img class="w750-h1-down-i9" src='https://gw.alicdn.com/tfs/TB11FoMJf5TBuNjSspmXXaDRVXa-750-1.png' />
+            </div>
+
+          </div>
+
         </div>
+        <div v-if="currentBar==2">
+          <div v-if="!apprentice.length">
+            <nofrienddata></nofrienddata>
+          </div>
+          <div v-if="apprentice.length" class="white-column-flex-start-w750-g17">
+            <div id="g12" class="white-row-space-between-w750-up-g12">
+              <div id="t2" class="black-size22-t2">昵称</div>
+              <div id="t3" class="black-size22-t3">星级</div>
+              <div id="t4" class="black-size22-t4">算力</div>
+            </div>
+            <div v-for="item in master" id="g16" class="white-column-flex-start-down-g16">
+              <div id="g14" class="row-center-w750-up-g14">
+                <div id="a18" class="column-center-background-a18">
+                  <div class="black-size24-t7">{{item.username}}</div>
+                </div>
+                <div class="black-size24-t8">{{item.starlevel}}</div>
+                <div id="a19" class="column-center-background-a19">
+                  <div id="t6" class="black-size24-t6">{{item.power}}</div>
+                </div>
+              </div>
+              <img class="w750-h1-down-i9" src='https://gw.alicdn.com/tfs/TB11FoMJf5TBuNjSspmXXaDRVXa-750-1.png' />
+            </div>
+
+          </div>
+
+        </div>
+        <div v-if="currentBar==3">
+
+          <div v-if="!disciple.length">
+            <nofrienddata></nofrienddata>
+          </div>
+
+          <div v-if="disciple.length" class="white-column-flex-start-w750-g17">
+            <div id="g12" class="white-row-space-between-w750-up-g12">
+              <div id="t2" class="black-size22-t2">昵称</div>
+              <div id="t3" class="black-size22-t3">星级</div>
+              <div id="t4" class="black-size22-t4">算力</div>
+            </div>
+
+            <div v-for="item in master" id="g16" class="white-column-flex-start-down-g16">
+              <div id="g14" class="row-center-w750-up-g14">
+                <div id="a18" class="column-center-background-a18">
+                  <div class="black-size24-t7">{{item.username}}</div>
+                </div>
+                <div class="black-size24-t8">{{item.starlevel}}</div>
+                <div id="a19" class="column-center-background-a19">
+                  <div id="t6" class="black-size24-t6">{{item.power}}</div>
+                </div>
+              </div>
+              <img class="w750-h1-down-i9" src='https://gw.alicdn.com/tfs/TB11FoMJf5TBuNjSspmXXaDRVXa-750-1.png' />
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
 </template>
 <style scoped>
+/*有师傅*/
+
+.white-column-flex-start-w750-g17 {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  width: 750px;
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+}
+
+.white-row-space-between-w750-up-g12 {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 750px;
+  align-self: flex-start;
+  background-color: rgba(235, 235, 235, 1);
+  padding-top: 10px;
+  padding-bottom: 9px;
+  display: flex;
+}
+
+.black-size22-t2 {
+  position: relative;
+  align-self: center;
+  font-family: PingFangSC-Light;
+  font-size: 22px;
+  color: #3a3a3a;
+  line-height: 30px;
+  font-weight: normal;
+  margin-left: 123px;
+}
+
+.black-size22-t3 {
+  position: relative;
+  align-self: center;
+  font-family: PingFangSC-Light;
+  font-size: 22px;
+  color: #3a3a3a;
+  line-height: 30px;
+  font-weight: normal;
+  margin-top: 1px;
+}
+
+.black-size22-t4 {
+  position: relative;
+  align-self: center;
+  font-family: PingFangSC-Light;
+  font-size: 22px;
+  color: #3a3a3a;
+  line-height: 30px;
+  font-weight: normal;
+  margin-top: 1px;
+  margin-right: 122px;
+}
+
+.white-column-flex-start-down-g16 {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 1);
+  margin-top: -1px;
+  display: flex;
+}
+
+.row-center-w750-up-g14 {
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  width: 750px;
+  align-self: flex-start;
+  margin-top: 29px;
+  margin-bottom: 27px;
+  display: flex;
+}
+
+.column-center-background-a18 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.black-size24-t7 {
+  position: relative;
+  font-family: PingFangSC-Regular;
+  font-size: 24px;
+  color: #3a3a3a;
+  line-height: 33px;
+  font-weight: normal;
+  margin-right: 520px;
+  margin-left: 61px;
+}
+
+.black-size24-t8 {
+  position: relative;
+  align-self: flex-start;
+  font-family: PingFangSC-Regular;
+  font-size: 24px;
+  color: #3a3a3a;
+  line-height: 33px;
+  font-weight: normal;
+}
+
+.column-center-background-a19 {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.black-size24-t6 {
+  position: relative;
+  font-family: PingFangSC-Regular;
+  font-size: 24px;
+  color: #3a3a3a;
+  line-height: 33px;
+  font-weight: normal;
+  margin-right: 110px;
+  margin-left: 573px;
+}
+
+.w750-h1-down-i9 {
+  position: relative;
+  width: 750px;
+  height: 1px;
+  align-self: flex-start;
+}
+
 .an {
   -webkit-animation: pulse 1s linear infinite; /*鼠标hover时，i图标旋转,infinite表示动画无限循环*/
-  -moz-animation: pulse 1s linear infinite; /*鼠标hover时，i图标旋转,infinite表示动画无限循环*/
-  -o-animation: pulse 1s linear infinite; /*鼠标hover时，i图标旋转,infinite表示动画无限循环*/
   animation: pulse 1s linear infinite;
 }
 .anbg {
   -webkit-animation: pslideulse 4s linear infinite; /*鼠标hover时，i图标旋转,infinite表示动画无限循环*/
-  -moz-animation: pslideulse 4s linear infinite; /*鼠标hover时，i图标旋转,infinite表示动画无限循环*/
-  -o-animation: pslideulse 4s linear infinite; /*鼠标hover时，i图标旋转,infinite表示动画无限循环*/
   animation: slide 4s linear infinite;
 }
 @-webkit-keyframes slide {
   from {
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(0, 100%, 0);
-    -moz-transform: translate3d(0, 100%, 0);
-    -o-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, -20%, 0);
   }
 
   to {
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@-moz-keyframes slide {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    -webkit-transform: translate3d(0, 100%, 0);
-    -moz-transform: translate3d(0, 100%, 0);
-    -o-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, -20%, 0);
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@-o-keyframes slide {
-  from {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    -webkit-transform: translate3d(0, 100%, 0);
-    -moz-transform: translate3d(0, 100%, 0);
-    -o-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, -20%, 0);
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 }
@@ -246,21 +349,14 @@
 @keyframes slide {
   from {
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
   50% {
     -webkit-transform: translate3d(0, 100%, 0);
-    -moz-transform: translate3d(0, 100%, 0);
-    -o-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, -20%, 0);
   }
-
   to {
     -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 }
@@ -346,9 +442,7 @@
   top: 62px;
   animation-delay: 0.3s;
 }
-.wh22 {
-  width: 300px;
-}
+
 .w300-h300-i23 {
   position: relative;
   width: 300px;
@@ -1204,18 +1298,29 @@
 </style>
 <script>
 import util from '../lib/util.js';
+import statusbar from '../compents/statusbar.vue';
+import navbar from '../compents/navbar.vue';
+import bar from '../compents/bar.vue';
+import nofrienddata from '../compents/nofrienddata.vue';
+
 export default {
   data: function() {
     return {
+      currentBar: 1,
+      master: [],
+      apprentice: [],
+
+      disciple: [],
       usreData: {},
       ranktype: 1,
       powerranklist: [],
       diamondranklist: [],
       diamondValue: 0,
-      diamondlist: []
+      diamondlist: [],
+      menu: ['师傅', '徒弟', '徒孙']
     };
   },
-  components: {},
+  components: { bar, nofrienddata, statusbar, navbar },
   methods: {
     closeLogin: function() {
       api.closeWin();
@@ -1223,6 +1328,9 @@ export default {
     changeRank: function(index) {
       this.ranktype = index;
       //this.ranktype = index;
+    },
+    changeBar: function(index) {
+      this.currentBar = index;
     },
     goCheats: function() {
       util.goPage('./mining-cheats.html');
@@ -1232,9 +1340,6 @@ export default {
     },
     goCalculateDetail: function() {
       util.goPage('./mining-calculate-detail.html');
-    },
-    goSteal: function() {
-      util.goPage('./mining-steal.html');
     },
     goOriginDetail: function() {
       util.goPage('./mining-origin-detail.html');
@@ -1307,7 +1412,8 @@ export default {
         'GET'
       );
     },
-    initcc: function() {
+
+    initcreated: function() {
       var self = this;
       util.getUserInfo(function(data) {
         if (data) {
@@ -1320,19 +1426,54 @@ export default {
       self.getdiamondValue();
       self.getdiamondlist();
     },
-    initcreated: function() {
+    getmaster: function() {
       var self = this;
-      self.initcc();
-      util.addEvent('myrefresh', function() {
-        self.initcc();
-      });
-      util.addEvent('myclear', function() {
-        self.usreData = {};
-      });
+      util.ajax(
+        'https://restful.yatou.com/user/master/',
+        {},
+        function(res) {
+          self.master = res;
+          console.log('master');
+          console.log(res);
+        },
+        'GET'
+      );
+    },
+    getapprentice: function() {
+      var self = this;
+
+      util.ajax(
+        'https://restful.yatou.com/user/apprentice/',
+        {},
+        function(res) {
+          self.apprentice = res;
+          console.log('apprentice');
+
+          console.log(res);
+        },
+        'GET'
+      );
+    },
+    getdisciple: function() {
+      var self = this;
+      util.ajax(
+        'https://restful.yatou.com/user/disciple/',
+        {},
+        function(res) {
+          self.disciple = res;
+          console.log('disciple');
+
+          console.log(res);
+        },
+        'GET'
+      );
     }
   },
   created: function() {
     this.initcreated();
+    this.getmaster();
+    this.getapprentice();
+    this.getdisciple();
   }
 };
 </script>

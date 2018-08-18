@@ -173,7 +173,6 @@
   color: #3a3a3a;
   width: 90%;
   line-height: 37px;
-  font-weight: normal;
   margin-left: 31px;
   border: 0px;
 }
@@ -316,7 +315,6 @@ export default {
             verifcode: this.phoneVerify
           },
           function(res) {
-            //console.log(res);
             var data = res.data;
             util.login(data);
           },

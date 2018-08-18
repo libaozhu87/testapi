@@ -327,6 +327,8 @@
   position: absolute;
   width: 651px;
   height: 70px;
+  left: 0px;
+  right: 0px;
   margin: auto;
 }
 

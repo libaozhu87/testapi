@@ -115,7 +115,6 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  position: relative;
   width: 650px;
   height: 70px;
   align-self: center;
@@ -123,9 +122,12 @@ body {
     margin-top: 867px;
 */
   position: fixed;
-
+  overflow: auto;
   bottom: 43px;
   display: flex;
+  left: 0px;
+  right: 0px;
+  margin: auto;
 }
 
 .w650-h70-background-i8 {
@@ -166,7 +168,10 @@ export default {
       });
     },
     check: function() {
-      util.alert('已经是最新版本了');
+      //util.alert('已经是最新版本了');
+      api.toast({
+        msg: '已经是最新版本了'
+      });
     },
     loginout: function() {
       util.loginout();

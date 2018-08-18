@@ -3,4 +3,5 @@ import App from './App.vue';
 
 window.$api.ready(function () {
   window.appVue = new Vue(App).$mount('#app');
+  window.$api.loadRefresh(window.appVue);
 })

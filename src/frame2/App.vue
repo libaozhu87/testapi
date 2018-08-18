@@ -76,11 +76,12 @@
       </div>
       <img id="i24" class="w10-h18-right-i24" src='https://gw.alicdn.com/tfs/TB1RA7tGr9YBuNjy0FgXXcxcXXa-10-18.png' />
     </div>
+    <img id="i27" class="w750-h2-down-i27" src='https://gw.alicdn.com/tfs/TB1f5W4GuOSBuNjy0FdXXbDnVXa-750-2.png' />
 
-    <div id="g5" class="white-column-flex-start-w74-h77-g5" @click="doShowAlert()">
+    <!--   <div id="g5" class="white-column-flex-start-w74-h77-g5" @click="doShowAlert()">
       <img id="i1" class="w59-h64-absolute-i1" src='https://gw.alicdn.com/tfs/TB1esXnczfguuRjSspkXXXchpXa-59-64.png' />
       <div id="t3" class="white-size20-t3">900</div>
-    </div>
+    </div> -->
     <alertItem v-if="showAlert"></alertItem>
   </div>
 </template>
@@ -765,8 +766,10 @@ export default {
     goNews: function() {
       util.goPage('./user-news.html');
     },
-    initcreated: function() {
+    initcc: function() {
       var self = this;
+      console.log('myrefresh111');
+
       util.getUserInfo(function(data) {
         if (data) {
           self.usreData = data;
@@ -774,6 +777,17 @@ export default {
           self.starlevelWidth = Math.floor(self.usreData.starlevel * sw / 100);
         }
       });
+    },
+    initcreated: function() {
+      var self = this;
+      self.initcc();
+      util.addEvent('myrefresh', function() {
+        self.initcc();
+      });
+      util.addEvent('myclear', function() {
+        self.usreData = null;
+      });
+      //console.log('myrefresh');
     }
   },
   created: function() {

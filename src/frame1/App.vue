@@ -3,7 +3,7 @@
   <div>
     <div class="white-column-flex-start-w750-g119">
       <statusbar></statusbar>
-      <navbar title="应用"></navbar>
+      <navbar :hiddenback="true" title="应用"></navbar>
 
       <bar @currentbarindex="changeBar" :menu="menu"></bar>
 

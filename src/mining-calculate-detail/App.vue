@@ -15,83 +15,79 @@
         </div>
       </div>
       <div id="g77" class="row-center-w750-g77">
-        <div id="g71" class="column-flex-start-g71">
+        <div id="g71" class="column-flex-start-g71" @click="changeBar(1)">
           <div id="t13" class="black-size26-up-t13">好友加成</div>
-          <div id="t2" class="magenta-size26-down-t2">7000</div>
+          <div id="t2" class="magenta-size26-down-t2">0</div>
         </div>
         <img id="i12" class="w1-h72-i12" src='https://gw.alicdn.com/tfs/TB11iv.Gx9YBuNjy0FfXXXIsVXa-1-72.png' />
-        <div id="g73" class="column-flex-start-g73">
+        <div id="g73" class="column-flex-start-g73" @click="changeBar(2)">
           <div id="t14" class="black-size26-up-t14">任务奖励</div>
-          <div id="t3" class="magenta-size26-down-t3">3000</div>
+          <div id="t3" class="magenta-size26-down-t3">0</div>
         </div>
         <img id="i11" class="w1-h72-i11" src='https://gw.alicdn.com/tfs/TB1Bfa9GwmTBuNjy1XbXXaMrVXa-1-72.png' />
-        <div id="g75" class="column-flex-start-g75">
+        <div id="g75" class="column-flex-start-g75" @click="changeBar(3)">
           <div id="t15" class="black-size26-up-t15">星级加成</div>
-          <div id="t1" class="magenta-size26-down-t1">10000</div>
+          <div id="t1" class="magenta-size26-down-t1">0</div>
         </div>
       </div>
-      <div id="g82" class="white-row-flex-end-w750-g82">
-        <div id="t19" class="black-size22-t19">好友</div>
-        <div id="t20" class="black-size22-t20">星级</div>
-        <div id="t21" class="black-size22-t21">算力</div>
-        <div id="t23" class="black-size22-t23">算力加成</div>
-        <div id="t22" class="black-size22-t22">状态</div>
+
+      <div v-if="currentBar==1">
+        <div id="g82" class="white-row-flex-end-w750-g82">
+          <div id="t19" class="black-size22-t19">好友</div>
+          <div id="t20" class="black-size22-t20">星级</div>
+          <div id="t21" class="black-size22-t21">算力</div>
+          <div id="t23" class="black-size22-t23">算力加成</div>
+          <div id="t22" class="black-size22-t22">状态</div>
+        </div>
+        <div>
+          <div id="g93" class="row-flex-start-w750-g93">
+            <div id="t32" class="black-size24-t32">用户昵称七个字</div>
+            <div id="t33" class="black-size24-t33">3</div>
+            <div id="t29" class="black-size24-t29">79001</div>
+            <div id="t30" class="black-size24-t30">300</div>
+            <div id="t31" class="black-size24-t31">挖矿中</div>
+          </div>
+          <img id="i34" class="w690-h1-i34" src='https://gw.alicdn.com/tfs/TB1m5DwGuOSBuNjy0FdXXbDnVXa-690-1.png' />
+        </div>
+
       </div>
-      <div id="g88" class="row-flex-start-w750-g88">
-        <div id="t27" class="black-size24-t27">用户昵称七个字</div>
-        <div id="t28" class="black-size24-t28">5</div>
-        <div id="t24" class="black-size24-t24">91801</div>
-        <div id="t25" class="black-size24-t25">500</div>
-        <div id="t26" class="black-size24-t26">挖矿中</div>
+
+      <div v-if="currentBar==2">
+        <div id="g82" class="white-row-flex-end-w750-g82-1">
+          <div id="t19" class="black-size22-t19-1">任务</div>
+          <div id="t20" class="black-size22-t20-1">奖励</div>
+        </div>
+        <div>
+          <div id="g93" class="row-flex-start-w750-g93">
+            <div id="t32" class="black-size24-t32-1">输入邀请码</div>
+            <div id="t33" class="black-size24-t33-1">500</div>
+          </div>
+          <img id="i34" class="w690-h1-i34" src='https://gw.alicdn.com/tfs/TB1m5DwGuOSBuNjy0FdXXbDnVXa-690-1.png' />
+        </div>
+
       </div>
-      <div id="g93" class="row-flex-start-w750-g93">
-        <div id="t32" class="black-size24-t32">用户昵称七个字</div>
-        <div id="t33" class="black-size24-t33">3</div>
-        <div id="t29" class="black-size24-t29">79001</div>
-        <div id="t30" class="black-size24-t30">300</div>
-        <div id="t31" class="black-size24-t31">挖矿中</div>
+
+      <div v-if="currentBar==3">
+        <div id="g82" class="white-row-flex-end-w750-g82-1">
+          <div id="t19" class="black-size22-t19-1">星级</div>
+          <div id="t20" class="black-size22-t20-1">加成</div>
+          <!--           <div id="t21" class="black-size22-t21">算力</div>
+          <div id="t23" class="black-size22-t23">算力加成</div>
+          <div id="t22" class="black-size22-t22">状态</div> -->
+        </div>
+        <div>
+          <div id="g93" class="row-flex-start-w750-g93">
+            <div id="t32" class="black-size24-t32-1">1</div>
+            <div id="t33" class="black-size24-t33-1">7900</div>
+            <!--             <div id="t29" class="black-size24-t29">79001</div>
+            <div id="t30" class="black-size24-t30">300</div>
+            <div id="t31" class="black-size24-t31">挖矿中</div> -->
+          </div>
+          <img id="i34" class="w690-h1-i34" src='https://gw.alicdn.com/tfs/TB1m5DwGuOSBuNjy0FdXXbDnVXa-690-1.png' />
+        </div>
+
       </div>
-      <img id="i34" class="w690-h1-i34" src='https://gw.alicdn.com/tfs/TB1m5DwGuOSBuNjy0FdXXbDnVXa-690-1.png' />
-      <div id="g98" class="row-flex-start-w750-g98">
-        <div id="t38" class="black-size24-t38">用户昵称七个字</div>
-        <div id="t39" class="black-size24-t39">5</div>
-        <div id="t35" class="black-size24-t35">91801</div>
-        <div id="t36" class="black-size24-t36">500</div>
-        <div id="t37" class="black-size24-t37">挖矿中</div>
-      </div>
-      <img id="i40" class="w690-h1-i40" src='https://gw.alicdn.com/tfs/TB1_fa9GwmTBuNjy1XbXXaMrVXa-690-1.png' />
-      <div id="g103" class="row-flex-start-w750-g103">
-        <div id="t44" class="black-size24-t44">用户昵称七个字</div>
-        <div id="t45" class="black-size24-t45">5</div>
-        <div id="t41" class="black-size24-t41">91801</div>
-        <div id="t42" class="black-size24-t42">500</div>
-        <div id="t43" class="black-size24-t43">挖矿中</div>
-      </div>
-      <img id="i46" class="w690-h1-i46" src='https://gw.alicdn.com/tfs/TB1CiDwGuOSBuNjy0FdXXbDnVXa-690-1.png' />
-      <div id="g108" class="row-flex-start-w750-g108">
-        <div id="t50" class="black-size24-t50">用户昵称七个字</div>
-        <div id="t51" class="black-size24-t51">1</div>
-        <div id="t47" class="black-size24-t47">91801</div>
-        <div id="t48" class="black-size24-t48">100</div>
-        <div id="t49" class="black-size24-t49">挖矿中</div>
-      </div>
-      <img id="i52" class="w690-h1-i52" src='https://gw.alicdn.com/tfs/TB1cFSaGGmWBuNjy1XaXXXCbXXa-690-1.png' />
-      <div id="g113" class="row-flex-start-w750-g113">
-        <div id="t56" class="black-size24-t56">用户昵称七个字</div>
-        <div id="t57" class="black-size24-t57">5</div>
-        <div id="t53" class="black-size24-t53">91801</div>
-        <div id="t54" class="black-size24-t54">500</div>
-        <div id="t55" class="black-size24-t55">挖矿中</div>
-      </div>
-      <img id="i58" class="w690-h1-i58" src='https://gw.alicdn.com/tfs/TB1C4dsXzrguuRjy0FeXXXcbFXa-690-1.png' />
-      <div id="g118" class="row-center-w750-g118">
-        <div id="t62" class="ltgray-size24-t62">用户昵称七个字</div>
-        <div id="t63" class="ltgray-size24-t63">5</div>
-        <div id="t59" class="ltgray-size24-t59">91801</div>
-        <div id="t60" class="ltgray-size24-t60">500</div>
-        <div id="t61" class="ltgray-size24-t61">矿满</div>
-      </div>
-      <img id="i64" class="w690-h1-i64" src='https://gw.alicdn.com/tfs/TB1qFSaGGmWBuNjy1XaXXXCbXXa-690-1.png' />
+
       <div id="g125" class="column-center-w651-h70-g125" @click="goget">
         <img id="i16" class="w651-h70-background-i16" src='https://gw.alicdn.com/tfs/TB1Sfa9GwmTBuNjy1XbXXaMrVXa-651-70.png' />
         <div id="t17" class="white-size30-t17">获取更多算力</div>
@@ -345,6 +341,19 @@
   margin-left: 0.5px;
 }
 
+.white-row-flex-end-w750-g82-1 {
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width: 750px;
+  align-self: center;
+  background-color: rgba(235, 235, 235, 1);
+  margin-top: 9px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+}
+
 .white-row-flex-end-w750-g82 {
   flex-direction: row;
   justify-content: flex-end;
@@ -359,6 +368,18 @@
   display: flex;
 }
 
+.black-size22-t19-1 {
+  position: relative;
+  align-self: center;
+  font-family: PingFangSC-Light;
+  font-size: 22px;
+  color: #3a3a3a;
+  margin-left: 60px;
+  line-height: 30px;
+  font-weight: normal;
+  margin-right: 322px;
+}
+
 .black-size22-t19 {
   position: relative;
   align-self: center;
@@ -368,6 +389,18 @@
   line-height: 30px;
   font-weight: normal;
   margin-right: 122px;
+}
+
+.black-size22-t20-1 {
+  position: relative;
+  align-self: center;
+  font-family: PingFangSC-Light;
+  font-size: 22px;
+  color: #3a3a3a;
+  line-height: 30px;
+  font-weight: normal;
+  /*   margin-right: 76px;
+ */
 }
 
 .black-size22-t20 {
@@ -492,6 +525,28 @@
   display: flex;
 }
 
+.black-size24-t32-1 {
+  position: relative;
+  align-self: flex-start;
+  font-family: PingFangSC-Regular;
+  font-size: 24px;
+  color: #3a3a3a;
+  line-height: 33px;
+  font-weight: normal;
+  margin-left: 60px;
+  width: 300px;
+}
+.black-size24-t33-1 {
+  position: relative;
+  align-self: flex-start;
+  font-family: PingFangSC-Regular;
+  font-size: 24px;
+  color: #3a3a3a;
+  line-height: 33px;
+  font-weight: normal;
+  margin-left: 60px;
+}
+
 .black-size24-t32 {
   position: relative;
   align-self: flex-start;
@@ -550,7 +605,7 @@
 .w690-h1-i34 {
   position: relative;
   width: 690px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
   resize: stretch;
   margin-left: 1px;
@@ -626,7 +681,7 @@
 .w690-h1-i40 {
   position: relative;
   width: 690px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
   resize: stretch;
   margin-left: 1px;
@@ -702,7 +757,7 @@
 .w690-h1-i46 {
   position: relative;
   width: 690px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
   resize: stretch;
   margin-left: 1px;
@@ -778,7 +833,7 @@
 .w690-h1-i52 {
   position: relative;
   width: 690px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
   resize: stretch;
   margin-left: 1px;
@@ -854,7 +909,7 @@
 .w690-h1-i58 {
   position: relative;
   width: 690px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
   resize: stretch;
   margin-left: 1px;
@@ -929,7 +984,7 @@
 .w690-h1-i64 {
   position: relative;
   width: 690px;
-  height: 1px;
+  height: 1px; /* no */
   align-self: center;
   resize: stretch;
   margin-left: 1px;
@@ -982,6 +1037,8 @@ import util from '../lib/util.js';
 export default {
   data: function() {
     return {
+      currentBar: 1,
+
       usreData: {}
     };
   },
@@ -989,6 +1046,10 @@ export default {
   methods: {
     closeLogin: function() {
       api.closeWin();
+    },
+    changeBar: function(index) {
+      this.currentBar = index;
+      this.$emit('currentbarindex', this.currentBar);
     },
     goget: function() {
       util.goPage('./mining-get-calculate.html');

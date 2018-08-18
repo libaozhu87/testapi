@@ -23,51 +23,9 @@
     var isAndroid = /Android/i.test(navigator.userAgent);
     var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     apiready = function () {
-        funIniGroup();
-        window.main
+        $api.funIniGroup();
+        //window.main
     }
-    var funIniGroup = function () {
-        var frames = [{
-                name: "frame0",
-                url: "./html/frame0.html",
-                bounces: true
-            },
-            {
-                name: "frame1",
-                url: "./html/frame1.html",
-                bounces: true
-            },
-            {
-                name: "frame2",
-                url: "./html/frame2.html",
-                bounces: true
-            }
-        ];
-        /*     console.log(isAndroid);
-            console.log(isIOS); */
-        var hh = api.winHeight - ($api.dom("#footer").offsetHeight / api.screenHeight * api.winHeight);
-        if (isAndroid) {
-            hh = api.winHeight - ($api.dom("#footer").offsetHeight);
-        }
-
-        /*       console.log($api.dom("#footer").offsetHeight);
-              console.log(api.screenHeight);
-              console.log(api.winHeight); */
-        api.openFrameGroup({
-            name: 'group',
-            scrollEnabled: false,
-            rect: {
-                x: 0,
-                y: 0,
-                w: api.winWidth,
-                h: hh
-            },
-            frames: frames
-        }, function (ret, err) {
-            console.log(JSON.stringify(ret));
-        });
-
-    };
 </script>
 
 </html>
