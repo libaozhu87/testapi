@@ -85,7 +85,6 @@ module.exports = {
   }
 };
 module.exports.devtool = "#source-map";
-
 if (process.env.NODE_ENV === "production") {
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
